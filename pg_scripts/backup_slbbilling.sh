@@ -7,10 +7,10 @@
 #Прмиер запуска исполняемого модуля: ./backup_dbase.sh srv01 5432 DBName postgres 3 /pgbackup"
 
 dbname=slbBilling
-hostname=localhost
+srvname=localhost
 port=5434
 username=postgres
 jobs=3
 backupdir_root=/pgbackup
 
-./backup_dbase.sh $hosthame $port $dbname $username $jobs $backupdir_root
+./backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root

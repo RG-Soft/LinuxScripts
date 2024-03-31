@@ -12,14 +12,16 @@ if [ "$1" == "" ]; then
     exit 1
 fi
 
-hostname=$1
+echo "$@"
+
+srvname=$1
 port=$2
 dbname=$3
 username=$4
 jobs=$5
 backupdir_root=$6
 
-if [ -d "$backupdir_root" ]; then
+if [ ! -d "$backupdir_root" ]; then
     echo "Отсутствует корневой каталог бэкапов! Создайте и настройте корневой каталог $backupdir_root..."
     exit 100
 fi
@@ -40,7 +42,7 @@ else
 fi
 
 echo "--==Start  $dbname backup==--"
-pg_dump --host $hostname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 --verbose --file $backupdir_inprogress $dbname
+pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 --verbose --file $backupdir_inprogress $dbname
 echo "--==Finish $dbname backup==--"
 
 mv $backupdir_inprogress $backupdir

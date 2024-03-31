@@ -3,7 +3,7 @@
 #
 # RGS Стартер бэкапирование базы кластера
 #
-#Пример запуска стартера:            ./backup_dbname.sh
+#Пример запуска стартера:            ./backup_dbname.sh 
 #Прмиер запуска исполняемого модуля: ./backup_dbase.sh srv01 5432 DBName postgres 3 /pgbackup"
 
 dbname=TOEZGP

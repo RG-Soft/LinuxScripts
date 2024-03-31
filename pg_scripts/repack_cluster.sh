@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#test
+
 hostname=localhost
 port=5435
 username=postgres

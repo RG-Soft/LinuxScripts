@@ -12,7 +12,8 @@ if [ "$1" == "" ]; then
     exit 1
 fi
 
-echo "$@"
+#test param
+#echo "$@"
 
 srvname=$1
 port=$2
@@ -26,7 +27,7 @@ if [ ! -d "$backupdir_root" ]; then
     exit 100
 fi
 
-backupdir=/${backupdir_root}/${dbname}/${dbname}_now
+backupdir=${backupdir_root}/${dbname}/${dbname}_now
 backupdir_inprogress=${backupdir}.backuping
 
 if [ -d "$backupdir_inprogress" ]; then

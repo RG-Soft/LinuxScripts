@@ -4,7 +4,7 @@ clustername=1CHelper
 hostname=localhost
 port=5435
 username=postgres
-backupdir=/pgbackup/$clustername/basebackup/$clustername_$(date +'%Y%m%d')
+backupdir=/pgbackup/$clustername/basebackup/${clustername}_$(date +'%Y%m%d')
 backupdir_inprogress=$backupdir.backuping
 
 if [ -d "$backupdir_inprogress" ]; then

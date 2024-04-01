@@ -13,4 +13,4 @@ username=postgres
 jobs=3
 backupdir_root=/pgbackup
 
-./backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root
+/var/lib/postgresql/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root

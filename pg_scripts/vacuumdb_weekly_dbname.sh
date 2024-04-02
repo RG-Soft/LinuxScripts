@@ -11,5 +11,6 @@ srvname=localhost
 port=5432
 username=postgres
 jobs=3
+freeze=freeze
 
-./vacuumdb_dbase.sh $srvname $port $dbname $username $jobs
+./vacuumdb_dbase.sh $srvname $port $dbname $username $jobs $freeze

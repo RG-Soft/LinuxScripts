@@ -1,16 +1,16 @@
 #!/bin/bash
+#
+# RGS Модуль регламента repack всех баз кластера. НО ТОЛЬКО "убитых" таблиц и индексов
+#
+#Пример запуска модуля:              ./repack_5432.sh
+#Прмиер запуска исполняемого модуля: ./repack_cluster.sh srv01 5432 postgres 3"
 
 #test
 
-hostname=localhost
-port=5435
-username=postgres
+srvname=$1
+port=$2
+username=$1
 jobs=3
-
-export PGHOST=$hostname
-export PGPORT=$port
-export PGUSER=$username # Пользователь, от которого запустится обслуживание
-#export PGPASSWORD=postgres # Пароль этого пользователя
 
 select_tables=" WITH constants AS (
     SELECT current_setting('block_size')::numeric AS bs, 23 AS hdr, 8 AS ma
@@ -218,10 +218,10 @@ FROM format_bloat
 WHERE ( bloat_pct > 50 and bloat_mb > 10 )
 ORDER BY bloat_pct DESC"
 
-echo "--==Start  $port repack==--"
+echo "--==Start  cluster $port repack==--"
 
 # Получаем список баз данных
-dblist=`psql --dbname=postgres --host=$hostname --port=$port --username=$username --command="copy (select datname from pg_stat_database) to stdout"`
+dblist=`psql --dbname=postgres --host=$srvname --port=$port --username=$username --command="copy (select datname from pg_stat_database) to stdout"`
 
 echo "Список баз к обработке:"
 echo "$dblist"
@@ -238,22 +238,22 @@ for dbname in $dblist ; do
     echo "Обрабатывается база \"$dbname\""
     echo "	Подсчитываем статистику по таблицам..."
 
-    table_list=`psql --dbname=$dbname --host=$hostname --port=$port --username=$username --command="copy ($select_tables) to stdout"`
+    table_list=`psql --dbname=$dbname --host=$srvname --port=$port --username=$username --command="copy ($select_tables) to stdout"`
 
     for table_name in $table_list ; do
 	echo "	Таблица в обработке \"$table_name\""
-	pg_repack --host=$hostname --port=$port --username=$username --no-password --dbname=$dbname --table=$table_name
+	pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --table=$table_name
     done
 
     # Получаем список объектов к обработке индексов
     echo "	Подсчитываем статистику по индексам..."
 
-    index_list=`psql --dbname=$dbname --host=$hostname --port=$port --username=$username --command="copy ($select_indexes) to stdout"`
+    index_list=`psql --dbname=$dbname --host=$srvname --port=$port --username=$username --command="copy ($select_indexes) to stdout"`
 
     for index_name in $index_list ; do
 	echo "	Индекс в обработке \"$index_name\""
-	pg_repack --host=$hostname --port=$port --username=$username --no-password --dbname=$dbname --index=$index_name
+	pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --index=$index_name
     done
 done
 
-echo "--==Finish $port repack==--"
+echo "--==Finish cluster $port repack==--"

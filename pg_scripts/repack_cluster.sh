@@ -9,8 +9,8 @@
 
 srvname=$1
 port=$2
-username=$1
-jobs=3
+username=$3
+jobs=$4
 
 select_tables=" WITH constants AS (
     SELECT current_setting('block_size')::numeric AS bs, 23 AS hdr, 8 AS ma

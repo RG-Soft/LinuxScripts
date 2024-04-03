@@ -5,7 +5,7 @@
 #
 
 USAGE_STRING="Usage: $0 hosthame port dbname username jobs backupdir
-example: ./backup_dbname.sh srv01 5432 db_saler postgres 3 /pgbackup"
+example: ./backup_dbname.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
@@ -21,13 +21,14 @@ dbname=$3
 username=$4
 jobs=$5
 backupdir_root=$6
+backup_suffix=$7
 
 if [ ! -d "$backupdir_root" ]; then
     echo "Отсутствует корневой каталог бэкапов! Создайте и настройте корневой каталог $backupdir_root..."
     exit 100
 fi
 
-backupdir=${backupdir_root}/${dbname}/${dbname}_now
+backupdir=${backupdir_root}/${dbname}/${dbname}_${backup_suffix}
 backupdir_inprogress=${backupdir}.backuping
 
 if [ -d "$backupdir_inprogress" ]; then

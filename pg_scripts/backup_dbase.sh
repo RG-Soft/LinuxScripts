@@ -3,6 +3,8 @@
 #
 # RGS бэкапирование базы кластера
 #
+#Пример запуска стартера:            ./backup_dbname.sh
+#Прмиер запуска исполняемого модуля: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
 
 USAGE_STRING="Usage: $0 hosthame port dbname username jobs backupdir
 example: ./backup_dbname.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
@@ -28,7 +30,7 @@ if [ ! -d "$backupdir_root" ]; then
     exit 100
 fi
 
-backupdir=${backupdir_root}/${dbname}/${dbname}_${backup_suffix}
+backupdir=${backupdir_root}/${dbname}/${dbname}${backup_suffix}
 backupdir_inprogress=${backupdir}.backuping
 
 if [ -d "$backupdir_inprogress" ]; then

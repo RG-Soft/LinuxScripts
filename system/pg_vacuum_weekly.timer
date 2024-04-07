@@ -1,0 +1,16 @@
+#
+# RG-Soft
+#
+# Тайм юнит для регламента vacuum еженедельного обслуживания баз кластера PG
+#
+
+[Unit]
+Description=PG. Vacuum weekly maintenance schedule service for databases
+Requires=pg_vacuum_weekly.service
+
+[Timer]
+Unit=pg_vacuum_weekly.service
+OnCalendar=Sat *-*-* 02:00:00
+
+[Install]
+WantedBy=timers.target

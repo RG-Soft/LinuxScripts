@@ -1,0 +1,16 @@
+#
+# RG-Soft
+#
+# Тайм юнит очистки и перепаковки для регламента обслуживания баз кластера PG
+#
+
+[Unit]
+Description=PG. Repack maintenance schedule service for databases
+Requires=pg_repack.service
+
+[Timer]
+Unit=pg_repack.service
+OnCalendar=Mon..Sat *-*-* 00:01:00
+
+[Install]
+WantedBy=timers.target

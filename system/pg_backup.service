@@ -11,8 +11,9 @@ Wants=pg_backup.timer
 [Service]
 Type=oneshot
 User=postgres
-ExecStart=/var/lib/postgresql/backup_dbsaler1.sh
-ExecStart=/var/lib/postgresql/backup_dbsaler2.sh
+#ExecStart=/var/lib/postgresql/backup_pawcmfr.sh
+#ExecStart=/var/lib/postgresql/backup_slberm.sh
+ExecStart=/var/lib/postgresql/backup_slbsvs_acc.sh
 
 [Install]
 WantedBy=multi-user.target

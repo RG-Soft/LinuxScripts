@@ -11,8 +11,9 @@ Wants=pg_vacuum_daily.timer
 [Service]
 Type=oneshot
 User=postgres
-ExecStart=/var/lib/postgresql/vacuumdb_daily_dbsaler1.sh
-ExecStart=/var/lib/postgresql/vacuumdb_daily_dbsaler2.sh
+#ExecStart=/var/lib/postgresql/vacuumdb_daily_pawcmfr.sh
+#ExecStart=/var/lib/postgresql/vacuumdb_daily_slberm.sh
+ExecStart=/var/lib/postgresql/vacuumdb_daily_slbsvs_acc.sh
 
 [Install]
 WantedBy=multi-user.target

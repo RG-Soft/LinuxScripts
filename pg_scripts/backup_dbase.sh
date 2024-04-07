@@ -30,7 +30,7 @@ if [ ! -d "$backupdir_root" ]; then
     exit 100
 fi
 
-backupdir=${backupdir_root}/${dbname}/${dbname}_${backup_suffix}
+backupdir=${backupdir_root}/${dbname}/${dbname}${backup_suffix}
 backupdir_inprogress=${backupdir}.backuping
 
 if [ -d "$backupdir_inprogress" ]; then

@@ -1,14 +1,14 @@
 #!/bin/bash
 #
-# RGS Стартер модуль регламента repack всех баз кластера. НО ТОЛЬКО "убитых" таблиц и индексов
+# RGS Стартер модуль регламента basebackup для кластера.
 #
-#Пример запуска модуля:              ./repack_5432.sh
-#Прмиер запуска исполняемого модуля: ./repack_cluster.sh db_saler srv01 5432 postgres /pgbackup"
+#Пример запуска модуля:              ./basebackup_cluster_5432.sh
+#Прмиер запуска исполняемого модуля: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup"
 
-clustername=db_saler
+clustername=db_saler # можно использовать номер порта, если кластен не именной, по имени базы.
 srvname=localhost
 port=5435
 username=postgres
 backupdir_root=/pgbackup
 
-./basebackup_cluster.sh $clustername $srvname $port $dbname $username $backupdir_root
+./basebackup_cluster.sh $srvname $port $username $clustername $backupdir_root

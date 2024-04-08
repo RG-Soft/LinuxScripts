@@ -32,12 +32,12 @@ for dbname in $dblist ; do
 
     # Игнорируем служебные базы данных
     if [ "$dbname" = "\N" ] || [ "$dbname" = "template0" ] ||  [ "$dbname" == "template1" ] || [ "$dbname" == "postgres" ] ; then
-	echo 'База \"$dbname\" пропускается...'
+	echo "База \"$dbname\" пропускается..."
         continue
     fi
 
     # Проводим сборку мусора и анализ базы данных, фриизим
-    echo 'Обрабатывается база: '$dbname
+    echo "Обрабатывается база: "$dbname
     /opt/pgpro/std-15/bin/psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="VACUUM(ANALYZE,${freeze}PARALLEL $jobs);"
 
 done

@@ -10,8 +10,4 @@ port=5432
 username=postgres
 jobs=3
 
-<<<<<<< HEAD
-./vacuum_cluster.sh $srvname $port $username $jobs
-=======
 ./vacuumdb_cluster.sh $srvname $port $username $jobs
->>>>>>> origin/main

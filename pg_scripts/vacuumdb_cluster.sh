@@ -7,8 +7,8 @@
 #Прмиер запуска исполняемого модуля  : ./vacuumdb_cluster.sh srv01 5432 postgres 3 [FREEZE]"
 
 USAGE_STRING="Использовать: $0 hosthame port dbname username jobs [FREEZE]
-Пример: ./vacuum_daily_cluster.sh srv01 5432 postgres 
-Пример: ./vacuum_daily_cluster.sh srv01 5432 postgres FREEZE"
+Пример: ./vacuum_daily_cluster.sh srv01 5432 postgres 3
+Пример: ./vacuum_daily_cluster.sh srv01 5432 postgres 3 FREEZE"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
@@ -20,9 +20,11 @@ port=$2
 username=$3
 jobs=$4
 freeze=""
+type="daily"
 
-if [ ! "$6" == "" ]; then
-    freeze="$6,"
+if [ ! "$5" == "" ]; then
+    freeze="--freeze"
+    type="weekly"
     #echo "Параметр freeze: $freeze"
 fi
 
@@ -37,7 +39,8 @@ for dbname in $dblist ; do
     fi
 
     # Проводим сборку мусора и анализ базы данных, фриизим
-    echo "Обрабатывается база: "$dbname
-    /opt/pgpro/std-15/bin/psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="VACUUM(ANALYZE,${freeze}PARALLEL $jobs);"
+    echo "--==Start  $dbname vacuum $type==--"
+    vacuumdb --host $srvname --port $port --username $username --no-password --jobs $jobs $dbname --analyze $freeze
+    echo "--==Finish $dbname vacuum $type==--"
 
 done

@@ -1,0 +1,20 @@
+#
+# RG-Soft
+#
+# Сервис юнит для регламента обслуживания баз кластера PG
+#
+#
+
+[Unit]
+Description=Storage for SQL Backup ru0994app48
+Requires=network-online.target
+After=network-online.target
+
+[Mount]
+What=srv48:/pgbackup
+Where=/pgbackup/srv48
+Type=nfs
+Options=rw,soft,_netdev
+
+[Install]
+WantedBy=multi-user.target

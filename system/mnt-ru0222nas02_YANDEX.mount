@@ -1,0 +1,20 @@
+#
+# RG-Soft
+#
+# Сервис юнит для регламента обслуживания баз кластера PG
+#
+#
+
+[Unit]
+Description=Storage for SQL Backup data
+Requires=network-online.target
+After=network-online.target
+
+[Mount]
+What=//ru0222nas02.dir.slb.com/YANDEX_RU_ES_LEGACY/EAR-AA-1315/SQLBACKUP
+Where=/mnt/ru0222nas02_YANDEX
+Type=cifs
+Options=credentials=/etc/win-credentials,rw,uid=1454697533,gid=1440600513,nofail,_netdev,iocharset=utf8
+
+[Install]
+WantedBy=multi-user.target

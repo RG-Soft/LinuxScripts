@@ -21,13 +21,15 @@ port=$2
 dbname=$3
 username=$4
 jobs=$5
-freeze="" 
+freeze=""
+type="daily"
 
 if [ ! "$6" == "" ]; then
-    freeze="--"$6
+    freeze="--freeze"
+    type="weekly"
     #echo "Параметр freeze: $freeze"
 fi
 
-echo "--==Start  $dbname vacuum weekly==--"
+echo "--==Start  $dbname vacuum $type==--"
 vacuumdb --host $srvname --port $port --username $username --no-password --jobs $jobs $dbname --analyze $freeze
-echo "--==Finish $dbname vacuum weekly==--"
+echo "--==Finish $dbname vacuum $type==--"

@@ -9,6 +9,6 @@
 srvname=localhost
 port=5433
 username=postgres
-jobs=3
+jobs=2
 
-/var/lib/postgresql/repack_cluster.sh $srvname $port $username $jobs
+`pwd`/repack_cluster.sh $srvname $port $username $jobs

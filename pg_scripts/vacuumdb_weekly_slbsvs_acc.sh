@@ -10,7 +10,7 @@ dbname=slbSVS_acc
 srvname=localhost
 port=5434
 username=postgres
-jobs=3
+jobs=2
 freeze=freeze
 
-/var/lib/postgresql/vacuumdb_dbase.sh $srvname $port $dbname $username $jobs $freeze
+`pwd`/vacuumdb_dbase.sh $srvname $port $dbname $username $jobs $freeze

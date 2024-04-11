@@ -15,4 +15,4 @@ backupdir_root=/pgbackup
 backup_suffix=_now # История бэкапов не ведется, бэкап используется для перезаливки баз разработчиков
 #backup_suffix=$(date +'%Y%m%d_%H%M%S') # История бэкапов ведется, бэкап сохраняется в каталог с меткой времени
 
-/var/lib/postgresql/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root $backup_suffix
+`pwd`/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root $backup_suffix

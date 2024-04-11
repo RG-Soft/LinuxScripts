@@ -11,4 +11,4 @@ username=postgres
 jobs=3
 freeze=FREEZE
 
-./vacuumdb_cluster.sh $srvname $port $username $jobs $freeze
+`pwd`/vacuumdb_cluster.sh $srvname $port $username $jobs $freeze

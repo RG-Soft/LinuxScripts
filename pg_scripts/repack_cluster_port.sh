@@ -11,4 +11,4 @@ port=5435
 username=postgres
 jobs=3
 
-./repack_cluster.sh $srvname $port $username $jobs
+`pwd`/repack_cluster.sh $srvname $port $username $jobs

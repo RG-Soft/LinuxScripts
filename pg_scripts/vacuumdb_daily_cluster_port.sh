@@ -10,4 +10,4 @@ port=5432
 username=postgres
 jobs=3
 
-./vacuumdb_cluster.sh $srvname $port $username $jobs
+`pwd`/vacuumdb_cluster.sh $srvname $port $username $jobs

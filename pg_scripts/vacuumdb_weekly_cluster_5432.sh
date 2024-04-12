@@ -11,4 +11,4 @@ username=postgres
 jobs=1
 freeze=FREEZE
 
-/var/lib/postgresql/vacuumdb_cluster.sh $srvname $port $username $jobs $freeze
+$(dirname ${BASH_SOURCE[0]})/vacuumdb_cluster.sh $srvname $port $username $jobs $freeze

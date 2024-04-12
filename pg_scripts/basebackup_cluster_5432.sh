@@ -11,4 +11,4 @@ port=5432
 username=postgres
 backupdir_root=/pgbackup
 
-/var/lib/postgresql/basebackup_cluster.sh $srvname $port $username $clustername $backupdir_root
+$(dirname ${BASH_SOURCE[0]})/basebackup_cluster.sh $srvname $port $username $clustername $backupdir_root

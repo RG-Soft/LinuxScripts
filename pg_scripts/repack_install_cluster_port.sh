@@ -9,4 +9,4 @@ srvname=localhost
 port=5435
 username=postgres
 
-`pwd`/repack_install_cluster.sh $srvname $port $username
+$(dirname ${BASH_SOURCE[0]})/repack_install_cluster.sh $srvname $port $username

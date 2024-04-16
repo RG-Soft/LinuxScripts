@@ -10,7 +10,7 @@ Requires=pg_basebackup.service
 
 [Timer]
 Unit=pg_basebackup.service
-OnCalendar=Sun *-*-* 02:00:00
+OnCalendar=Sun *-*-* 03:00:00
 
 [Install]
 WantedBy=timers.target

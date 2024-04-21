@@ -6,7 +6,7 @@
 #Прмиер запуска исполняемого модуля: ./basebackup_and_wal_copy.sh Zakupki /pgbackup/Zakupki/walbackup/ /pgbackup/Zakupki/basebackup/ /mnt/nas02_YANDEX/SQLBackup/Zakupki/"
 
 clustername=db_saler # можно использовать номер порта, если кластен не именной, или именя базы кластера.
-walbackup_dir=/pgbackup/$clustername/archive/
+walbackup_dir=/pgbackup/$clustername/walbackup/
 basebackup_dir=/pgbackup/$clustername/basebackup/
 basebackup_cloud_dir=/mnt/nas02_YANDEX/SQLBackup/$clustername/
 

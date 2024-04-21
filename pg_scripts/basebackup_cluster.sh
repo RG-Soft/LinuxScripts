@@ -6,7 +6,7 @@
 #Прмиер запуска исполняемого модуля: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup"
 
 USAGE_STRING="Использовать: $0 hosthame port username clustername backupdir
-Пример: ./repack_cluster_port.sh srv01 5432 postgres db_saler /pgbackup"
+Пример: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"

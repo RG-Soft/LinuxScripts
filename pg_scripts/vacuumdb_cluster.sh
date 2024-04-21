@@ -7,8 +7,8 @@
 #Прмиер запуска исполняемого модуля  : ./vacuumdb_cluster.sh srv01 5432 postgres 3 [FREEZE]"
 
 USAGE_STRING="Использовать: $0 hosthame port dbname username jobs [FREEZE]
-Пример: ./vacuum_daily_cluster.sh srv01 5432 postgres 3
-Пример: ./vacuum_daily_cluster.sh srv01 5432 postgres 3 FREEZE"
+Пример ежедневный  : ./vacuumdb_cluster.sh srv01 5432 postgres 3
+Пример еженедельный: ./vacuumdb_cluster.sh srv01 5432 postgres 3 FREEZE"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"

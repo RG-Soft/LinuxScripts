@@ -5,6 +5,14 @@
 #Пример запуска модуля:              ./basebackup_and_wal_copy_zakupki.sh
 #Прмиер запуска исполняемого модуля: ./basebackup_and_wal_copy.sh Zakupki /pgbackup/Zakupki/walbackup/ /pgbackup/Zakupki/basebackup/ /mnt/nas02_YANDEX/SQLBackup/Zakupki/"
 
+USAGE_STRING="Использовать: $0 clastername walbackup_dir basebackup_dir basebackup_cloud_dir
+Пример: ./basebackup_and_wal_copy.sh 5432 /pgbackup/5432/walbackup/ /pgbackup/5432/basebackup/ /mnt/nas02_YANDEX/SQLBackup/5432/"
+
+if [ "$1" == "" ]; then
+    echo "$USAGE_STRING"
+    exit 1
+fi
+
 clustername=$1 # можно использовать номер порта, если кластен не именной, или именя базы кластера.
 walbackup_dir=$2
 basebackup_dir=$3

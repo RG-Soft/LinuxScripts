@@ -6,7 +6,7 @@
 #Прмиер запуска исполняемого модуля: ./repack_cluster.sh srv01 5432 postgres 3"
 
 USAGE_STRING="Использовать: $0 hosthame port username jobs
-Пример: ./repack_cluster_port.sh srv01 5432 postgres 3"
+Пример: ./repack_cluster.sh srv01 5432 postgres 3"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"

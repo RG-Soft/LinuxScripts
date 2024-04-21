@@ -7,7 +7,7 @@
 #Прмиер запуска исполняемого модуля: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
 
 USAGE_STRING="Usage: $0 hosthame port dbname username jobs backupdir
-example: ./backup_dbname.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
+example: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"

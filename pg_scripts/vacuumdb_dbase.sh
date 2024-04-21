@@ -5,8 +5,8 @@
 #
 
 USAGE_STRING="Использовать: $0 hosthame port dbname username jobs [freeze]
-Пример1 ежедневный  : ./backup_dbname.sh srv01 5432 db_saler postgres 3
-Пример2 еженедельный: ./backup_dbname.sh srv01 5432 db_saler postgres 3 freeze"
+Пример1 ежедневный  : ./vacuumdb_dbase.sh srv01 5432 db_saler postgres 3
+Пример2 еженедельный: ./vacuumdb_dbase.sh srv01 5432 db_saler postgres 3 freeze"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"

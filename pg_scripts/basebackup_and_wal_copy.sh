@@ -106,8 +106,8 @@ for current_file in ${walbackup_dir}* ; do
 
 done
 
-echo -n "Перемещаем файлы  basebackup+wall в облако ${pgbasebackup_cloud_dir}... "
-if mv "$basebackup_current_dir" "$pgbasebackup_cloud_dir"
+echo -n "Перемещаем файлы  basebackup+wall в облако ${basebackup_cloud_dir}... "
+if mv "$basebackup_current_dir" "$basebackup_cloud_dir"
 then
 	echo "Выполнено!"
 else

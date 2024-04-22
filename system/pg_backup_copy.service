@@ -1,0 +1,16 @@
+#
+# RG-Soft
+#
+# Сервис юнит для регламента обслуживания баз кластера PG
+#
+[Unit]
+Description=PG. Copy backup DB daily maintenance schedule service for databases
+Wants=_pg_backup_copy.timer
+
+[Service]
+Type=oneshot
+ExecStart=/var/lib/postgresql/backup_dbsaler1_copy.sh
+
+
+[Install]
+WantedBy=multi-user.target

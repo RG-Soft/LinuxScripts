@@ -1,0 +1,20 @@
+#
+# RG-Soft
+#
+# Сервис юнит бэкапирования баз для регламента обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Backup daily maintenance schedule service for databases
+Wants=pg_backup.timer
+
+[Service]
+Type=oneshot
+User=postgres
+ExecStart=/var/lib/postgresql/backup_1chelper.sh
+ExecStart=/var/lib/postgresql/backup_slbbilling.sh
+ExecStart=/var/lib/postgresql/backup_toezgp.sh
+ExecStart=/var/lib/postgresql/backup_tpm_wo.sh
+
+[Install]
+WantedBy=multi-user.target

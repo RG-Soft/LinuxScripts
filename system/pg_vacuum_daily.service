@@ -1,0 +1,20 @@
+#
+# RG-Soft
+#
+# Сервис юнит для регламента обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Vacuum daily maintenance schedule service for databases
+Wants=pg_vacuum_daily.timer
+
+[Service]
+Type=oneshot
+User=postgres
+ExecStart=/var/lib/postgresql/vacuumdb_daily_1chelper.sh
+ExecStart=/var/lib/postgresql/vacuumdb_daily_slbbilling.sh
+ExecStart=/var/lib/postgresql/vacuumdb_daily_toezgp.sh
+ExecStart=/var/lib/postgresql/vacuumdb_daily_tpm_wo.sh
+
+[Install]
+WantedBy=multi-user.target

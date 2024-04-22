@@ -9,10 +9,17 @@ backupdir=/pgbackup/$dbasename/${dbasename}_now
 copydir=/mnt/ru0222nas02_YANDEX/ru0994app40/SQLBackup/${dbasename}/${dbasename}_now #$(date +'%Y%m%d')
 #\\ru0222nas02.dir.slb.com\YANDEX_RU_ES_LEGACY\EAR-AA-1315\SQLBACKUP\ru0994app40\SQLBackup\TOEZGP\TOEZGP_now
 
+echo "Запускаем копирование бэкапа базы ${dbasename} ..."
 if [ ! -d "$copydir" ]; then
+    echo -n "Каталог целевой ${copydir} не найден, создаем ... "
     mkdir -p $copydir
+    echo "Выполнено!"
 else
-   rm -f $copydir/*
+    echo -n "Каталог целевой  ${copydir} существует, запускаем зачистку перед копированием ... "
+    rm -f $copydir/*
+    echo "Выполнено!"
 fi
 
+echo -n "Запускаем копирование в ${copydir} ... "
 cp $backupdir/* $copydir/
+echo "Выполнено!"

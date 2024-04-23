@@ -13,14 +13,12 @@ if [ "$1" == "" ]; then
     exit 1
 fi
 
-srvname=%1
-port=%2
-dbname=%3
-username=%4
-jobs=%5
-backup_dir=%5
-
-$(dirname ${BASH_SOURCE[0]})/rest_backup_dbase.sh $srvname $port $dbname $username $jobs $backup_dir
+srvname=$1
+port=$2
+dbname=$3
+username=$4
+jobs=$5
+backup_dir=$6
 
 if /opt/pgpro/std-15/bin/dropdb --host $srvname --port $port --username $username --if-exists --no-password --echo $dbname; then
 

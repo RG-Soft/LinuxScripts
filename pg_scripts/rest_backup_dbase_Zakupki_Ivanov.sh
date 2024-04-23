@@ -4,16 +4,20 @@
 #
 #Пример запуска стартера:            ./rest_backup_dbase_name.sh
 #Прмиер запуска исполняемого модуля: ./rest_backup_dbase.sh srv01 5432 dbsaler1 postgres 3"
-
-#. Введите имя базы в которую надо залить бэкап. Это имя рабочей базы и фамилия сотрудника
-dbname=Zakupki_Ivanov
-#. Введите адрес каталога бэкапа
-backup_dir=/pgbackup/ru0222app48/Zakupki/Zakupki_now	# Бэкап на рабочем сервере
+#-----------------------Часто изменяемые параметры----------------------------
+#. Введите имя базы из которой надо залить бэкап. Обычно это имя рабочей базы.
+dbname_source=Zakupki
+#. Введите фамилию сотрудника для которого надо залить бэкап. Это фамилия сотрудника + возможно номер или другое
+developer=Ivanov
+#. Уточните адрес каталога бэкапа
+backup_dir=/pgbackup/ru0222app48/${dbname_source}/${dbname_source}_now	# Бэкап на рабочем сервере
 #backup_dir=/pgbackup/current_backup/now.Z_St		# Бэкап на текущем сервере
+#----------------------------------------------------------------------------
 
+dbname=${dbname_source}_${developer}
 srvname=localhost
 port=5432
 username=postgres
-jobs=3
+jobs=3 # количество должно быть CPU/2 - максимум на слабых машинах.
 
 $(dirname ${BASH_SOURCE[0]})/rest_backup_dbase.sh $srvname $port $dbname $username $jobs $backup_dir

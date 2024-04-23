@@ -32,7 +32,7 @@ if /opt/pgpro/std-15/bin/dropdb --host $srvname --port $port --username $usernam
 	    	echo "Базу \"$dbname\" восстановить из бэкапа \"$backup_dir\" не получилось..."
 		fi
     else
-		echo "Базу \"$dbname\" создать не получилось..."
+		  echo "Базу \"$dbname\" создать не получилось..."
     fi
 else
     echo "Базу \"$dbname\" удалить не получилось..."

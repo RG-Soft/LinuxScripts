@@ -6,7 +6,7 @@
 #Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 "test1 test2""
 
 USAGE_STRING="Использовать: $0 hosthame port username jobs backup_dir time_lable
-#Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 \"test1 test2\""
+Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 \"test1 test2\""
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"

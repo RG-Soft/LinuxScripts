@@ -13,7 +13,7 @@ srvname=localhost
 port=5432
 username=postgres
 jobs=3
-freeze=freeze
+freeze=FREEZE
 # ///////////////////////////////////////////////////////////////
 
 $(dirname ${BASH_SOURCE[0]})/vacuumdb_dbase.sh $srvname $port $dbname $username $jobs $freeze

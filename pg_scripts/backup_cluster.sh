@@ -28,21 +28,14 @@ dblist=`psql --dbname=postgres --host=$srvname --port=$port --username=$username
 
 echo "Список баз к обработке:"
 echo "$dblist"
+echo "Список баз к исключению из обработки:"
+echo "$skip_dblist"
 
 for dbname in $dblist ; do
 
-	skip_dbname==""
-	for cur_dbname in $skip_dblist; do
-		if [ $dbname == $cur_dbname ]; then
-			echo "Найдена пропускаемая база $cur_dbname"
-			skip_dbname=$cur_dbname
-			break
-		fi
-	done
-
-    # Игнорируем служебные базы данных
-    if [[ $dbname == "\N" ]] || [[ $dbname == "template0" ]] || [[ $dbname == "template1" ]] || [[ $dbname == "postgres" ]] || [[ $dbname == $skip_dbname ]] ; then
-		echo "Системная или необязательная база \"$dbname\" пропускается..."
+    # Игнорируем служебные или исключенные базы данных
+    if echo "$skip_dblist" | grep -qw "$dbname"; then
+		echo "Системная или исключенная из обработки база \"$dbname\" пропускается..."
 		continue
     fi
 

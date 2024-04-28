@@ -2,11 +2,11 @@
 #
 # RGS Модуль регламента repack всех баз кластера. НО ТОЛЬКО "убитых" таблиц и индексов
 #
-#Пример запуска модуля:              ./repack_5432.sh
-#Прмиер запуска исполняемого модуля: ./repack_cluster.sh srv01 5432 postgres 3"
+#Пример запуска стартера модуля    : ./repack_cluster_5432.sh
+#Прмиер запуска исполняемого модуля: ./repack_cluster.sh srv01 5432 postgres 3  "base1 base3"
 
 USAGE_STRING="Использовать: $0 hosthame port username jobs
-Пример: ./repack_cluster.sh srv01 5432 postgres 3"
+Пример: ./repack_cluster.sh srv01 5432 postgres 3 \"base1 base3\""
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"

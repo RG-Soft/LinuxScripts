@@ -3,10 +3,10 @@
 # RGS Стартер бэкапирование всех баз кластера
 #
 #Пример запуска стартера:            ./backup_cluster_5432.sh
-#Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954"
+#Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 "test1 test2""
 
 USAGE_STRING="Использовать: $0 hosthame port username jobs backup_dir time_lable
-Пример: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 2024_05_04-10_10"
+#Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 \"test1 test2\""
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
@@ -19,6 +19,7 @@ username=$3
 jobs=$4
 backupdir_root=$5
 backup_suffix=$6
+skip_dblist=$7
 
 echo "--==Start  backup base in cluster $port ==--"
 
@@ -30,10 +31,19 @@ echo "$dblist"
 
 for dbname in $dblist ; do
 
+	skip_dbname==""
+	for cur_dbname in $skip_dblist; do
+		if [ $dbname == $cur_dbname ]; then
+			echo "Найдена пропускаемая база $cur_dbname"
+			skip_dbname=$cur_dbname
+			break
+		fi
+	done
+
     # Игнорируем служебные базы данных
-    if [[ $dbname == "\N" ]] || [[ $dbname == "template0" ]] ||  [[ $dbname == "template1" ]] || [[ $dbname == "postgres" ]] ; then
-	echo "База \"$dbname\" пропускается..."
-        continue
+    if [[ $dbname == "\N" ]] || [[ $dbname == "template0" ]] || [[ $dbname == "template1" ]] || [[ $dbname == "postgres" ]] || [[ $dbname == $skip_dbname ]] ; then
+		echo "Системная или необязательная база \"$dbname\" пропускается..."
+		continue
     fi
 
     echo "Обрабатывается база \"$dbname\""

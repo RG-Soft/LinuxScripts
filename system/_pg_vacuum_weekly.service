@@ -12,7 +12,7 @@ Wants=pg_vacuum_weekly.timer
 Type=oneshot
 User=postgres
 #ExecStart=/var/lib/postgresql/vacuumdb_weekly_dbsaler1.sh
-ExecStart=/var/lib/postgresql/vacuumdb_weekly_cluster_5432.sh
+ExecStart=/var/lib/postgresql/vacuumdb_cluster_5432_weekly.sh
 
 [Install]
 WantedBy=multi-user.target

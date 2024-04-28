@@ -17,6 +17,7 @@ srvname=$1
 port=$2
 username=$3
 jobs=$4
+skip_dblist=$5
 
 select_tables=" WITH constants AS (
     SELECT current_setting('block_size')::numeric AS bs, 23 AS hdr, 8 AS ma
@@ -234,10 +235,10 @@ echo "$dblist"
 
 for dbname in $dblist ; do
 
-    # Игнорируем служебные базы данных
-    if [[ $dbname == "\N" ]] || [[ $dbname == "template0" ]] ||  [[ $dbname == "template1" ]] || [[ $dbname == "postgres" ]] ; then
-	echo "База \"$dbname\" пропускается..."
-        continue
+    # Игнорируем служебные или исключенные базы данных
+    if echo "$skip_dblist" | grep -qw "$dbname"; then
+		echo "Системная или исключенная из обработки база \"$dbname\" пропускается..."
+		continue
     fi
 
     # Получаем список объектов к обработке таблиц

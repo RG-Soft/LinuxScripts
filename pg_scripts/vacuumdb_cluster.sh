@@ -19,10 +19,11 @@ srvname=$1
 port=$2
 username=$3
 jobs=$4
+skip_dblist=$5
 freeze=""
 type="daily"
 
-if [ ! "$5" == "" ]; then
+if [ ! "$6" == "" ]; then
     freeze="--freeze"
     type="weekly"
     #echo "Параметр freeze: $freeze"
@@ -32,10 +33,10 @@ fi
 dblist=`/opt/pgpro/std-15/bin/psql --dbname=postgres --host=$srvname --port=$port --username=$username --command="copy (select datname from pg_stat_database) to stdout"`
 for dbname in $dblist ; do
 
-    # Игнорируем служебные базы данных
-    if [ "$dbname" = "\N" ] || [ "$dbname" = "template0" ] ||  [ "$dbname" == "template1" ] || [ "$dbname" == "postgres" ] ; then
-	echo "База \"$dbname\" пропускается..."
-        continue
+    # Игнорируем служебные или исключенные базы данных
+    if echo "$skip_dblist" | grep -qw "$dbname"; then
+		echo "Системная или исключенная из обработки база \"$dbname\" пропускается..."
+		continue
     fi
 
     # Проводим сборку мусора и анализ базы данных, фриизим

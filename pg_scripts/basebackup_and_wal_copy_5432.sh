@@ -13,4 +13,4 @@ basebackup_dir=/pgbackup/$clustername/basebackup/
 basebackup_cloud_dir=/mnt/ru0222nas02_YANDEX/ru0994app40/SQLBackup/$clustername/
 # ///////////////////////////////////////////////////////////////
 
-$(dirname ${BASH_SOURCE[0]})/basebackup_and_wal_copy.sh $clustername $walbackup_dir $basebackup_dir $basebackup_cloud_dir
+$(dirname ${BASH_SOURCE[0]})/main/basebackup_and_wal_copy.sh $clustername $walbackup_dir $basebackup_dir $basebackup_cloud_dir

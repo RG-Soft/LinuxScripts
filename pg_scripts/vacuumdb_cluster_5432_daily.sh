@@ -20,4 +20,4 @@ skip_systemdblist="\N template0 template1 postgres"
 # ///////////////////////////////////////////////////////////////
 
 skip_dblist="${skip_systemdblist} ${skip_userdblist}"
-$(dirname ${BASH_SOURCE[0]})/vacuumdb_cluster.sh $srvname $port $username $jobs "$skip_dblist"
+$(dirname ${BASH_SOURCE[0]})/main/vacuumdb_cluster.sh $srvname $port $username $jobs "$skip_dblist"

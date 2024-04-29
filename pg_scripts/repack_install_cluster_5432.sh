@@ -12,4 +12,4 @@ port=5432
 username=postgres
 # ///////////////////////////////////////////////////////////////
 
-$(dirname ${BASH_SOURCE[0]})/repack_install_cluster.sh $srvname $port $username
+$(dirname ${BASH_SOURCE[0]})/main/repack_install_cluster.sh $srvname $port $username

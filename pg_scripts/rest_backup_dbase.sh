@@ -3,7 +3,7 @@
 # RGS Модуль восстановления базы из бэкапа pg_dump в базу
 #
 #Пример запуска стартера:            ./rest_backup_dbase_name.sh
-#Прмиер запуска исполняемого модуля: ./rest_backup_dbase.sh srv01 5432 dbsaler1 postgres 3"
+#Пример запуска исполняемого модуля: ./rest_backup_dbase.sh srv01 5432 dbsaler1 postgres 3 /pgbackup/dbsaler1_now"
 
 USAGE_STRING="Использовать: $0 hosthame port dbname username jobs backup_dir
 Пример: $0 srv01 5432 dbsaler1 postgres 3 /pgbackup"
@@ -13,14 +13,12 @@ if [ "$1" == "" ]; then
     exit 1
 fi
 
-srvname=%1
-port=%2
-dbname=%3
-username=%4
-jobs=%5
-backup_dir=%5
-
-$(dirname ${BASH_SOURCE[0]})/rest_backup_dbase.sh $srvname $port $dbname $username $jobs $backup_dir
+srvname=$1
+port=$2
+dbname=$3
+username=$4
+jobs=$5
+backup_dir=$6
 
 if /opt/pgpro/std-15/bin/dropdb --host $srvname --port $port --username $username --if-exists --no-password --echo $dbname; then
 
@@ -34,7 +32,7 @@ if /opt/pgpro/std-15/bin/dropdb --host $srvname --port $port --username $usernam
 	    	echo "Базу \"$dbname\" восстановить из бэкапа \"$backup_dir\" не получилось..."
 		fi
     else
-		echo "Базу \"$dbname\" создать не получилось..."
+		  echo "Базу \"$dbname\" создать не получилось..."
     fi
 else
     echo "Базу \"$dbname\" удалить не получилось..."

@@ -20,4 +20,4 @@ port=5432
 username=postgres
 jobs=3 # количество должно быть CPU/2 - максимум на слабых машинах.
 
-$(dirname ${BASH_SOURCE[0]})/rest_backup_dbase.sh $srvname $port $dbname $username $jobs $backup_dir
+$(dirname ${BASH_SOURCE[0]})/main/rest_backup_dbase.sh $srvname $port $dbname $username $jobs $backup_dir

@@ -1,18 +1,18 @@
 #!/bin/bash
+
 #
-# RGS Стартер модуля регламента vacuumdb еженедельного для всех баз кластера.
+# RGS Стартер регламента repack всех баз кластера. НО ТОЛЬКО "убитых" таблиц и индексов
 #
-#Пример запуска модуля:              ./vacuumdb_cluster_5432_weekly.sh
-#Прмиер запуска исполняемого модуля: ./vacuumdb_cluster.sh srv01 5432 postgres 3 "base1 base3" FREEZE
+#Пример запуска стартера:            ./repack_cluster_5432.sh
+#Прмиер запуска исполняемого модуля: ./repack_cluster.sh srv01 5432 postgres 3 "base1 base3"
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов
 srvname=localhost
-port=5432
+port=5435
 username=postgres
 jobs=3
 skip_userdblist="base1 base3"
-freeze=FREEZE
 # ///////////////////////////////////////////////////////////////
 
 # ///////////////////////////////////////////////////////////////
@@ -21,4 +21,4 @@ skip_systemdblist="\N template0 template1 postgres"
 # ///////////////////////////////////////////////////////////////
 
 skip_dblist="${skip_systemdblist} ${skip_userdblist}"
-$(dirname ${BASH_SOURCE[0]})/vacuumdb_cluster.sh $srvname $port $username $jobs "$skip_dblist" $freeze
+$(dirname ${BASH_SOURCE[0]})/main/repack_cluster.sh $srvname $port $username $jobs "$skip_dblist"

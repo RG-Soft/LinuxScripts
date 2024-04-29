@@ -2,7 +2,7 @@
 #
 # RGS Скрипт для подготовки скриптов/модулей регламентов PostgreSQL.
 #
-#Пример запуска модуля: ./copy_and_chown_x_postgres.sh
+# Пример запуска модуля: ./copy_and_chown_x_postgres.sh
 
 home_pg=~postgres
 home_pgscripts=${home_pg}/pg_scripts

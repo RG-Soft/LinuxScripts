@@ -14,4 +14,4 @@ username=postgres
 backupdir_root=/pgbackup
 # ///////////////////////////////////////////////////////////////
 
-$(dirname ${BASH_SOURCE[0]})/basebackup_cluster.sh $srvname $port $username $clustername $backupdir_root
+$(dirname ${BASH_SOURCE[0]})/main/basebackup_cluster.sh $srvname $port $username $clustername $backupdir_root

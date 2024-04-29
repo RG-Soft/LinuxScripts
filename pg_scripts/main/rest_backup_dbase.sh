@@ -21,18 +21,14 @@ jobs=$5
 backup_dir=$6
 
 if /opt/pgpro/std-15/bin/dropdb --host $srvname --port $port --username $username --if-exists --no-password --echo $dbname; then
-
     if /opt/pgpro/std-15/bin/createdb --host $srvname --port $port --username $username --echo --owner $username --no-password --encoding UTF8 --tablespace pg_default $dbname; then
-
 		if /opt/pgpro/std-15/bin/pg_restore --host $srvname --port $port --username $username --no-password --dbname $dbname --jobs $jobs --verbose $backup_dir; then
-
 			/opt/pgpro/std-15/bin/vacuumdb --host $srvname --port $port --username $username --no-password --dbname $dbname --jobs $jobs --analyze --freeze
-
 		else
 	    	echo "Базу \"$dbname\" восстановить из бэкапа \"$backup_dir\" не получилось..."
 		fi
     else
-		  echo "Базу \"$dbname\" создать не получилось..."
+		echo "Базу \"$dbname\" создать не получилось..."
     fi
 else
     echo "Базу \"$dbname\" удалить не получилось..."

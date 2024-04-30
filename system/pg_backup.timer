@@ -1,0 +1,16 @@
+#
+# RG-Soft
+#
+# Тайм юнит бэкапирования баз для регламента обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Backup daily maintenance schedule service for databases
+Requires=pg_backup.service
+
+[Timer]
+Unit=pg_backup.service
+OnCalendar=Mon..Fri *-*-* 03:15:00
+
+[Install]
+WantedBy=timers.target

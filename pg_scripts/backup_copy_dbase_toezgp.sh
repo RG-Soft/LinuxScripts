@@ -4,10 +4,13 @@
 #
 #Пример запуска стартера:            ./backup_copy_dbase_name.sh
 
+# ///////////////////////////////////////////////////////////////
+# Пользовательские параметры адаптируеются под настройки серверов
 dbasename=TOEZGP
 backupdir=/pgbackup/$dbasename/${dbasename}_now
 copydir=/mnt/ru0222nas02_YANDEX/ru0994app40/SQLBackup/${dbasename}/${dbasename}_now #$(date +'%Y%m%d')
 #\\ru0222nas02.dir.slb.com\YANDEX_RU_ES_LEGACY\EAR-AA-1315\SQLBACKUP\ru0994app40\SQLBackup\TOEZGP\TOEZGP_now
+# ///////////////////////////////////////////////////////////////
 
 echo "Запускаем копирование бэкапа базы ${dbasename} ..."
 if [ ! -d "$copydir" ]; then
@@ -15,7 +18,8 @@ if [ ! -d "$copydir" ]; then
     mkdir -p $copydir
     echo "Выполнено!"
 else
-    echo -n "Каталог целевой  ${copydir} существует, запускаем зачистку перед копированием ... "
+    echo "Каталог целевой  ${copydir} существует."
+    echo -n "Запускаем зачистку перед копированием ... "
     rm -f $copydir/*
     echo "Выполнено!"
 fi

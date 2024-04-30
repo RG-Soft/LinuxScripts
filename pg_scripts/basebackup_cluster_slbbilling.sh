@@ -5,9 +5,9 @@
 #Пример запуска модуля:              ./basebackup_cluster_5432.sh
 #Прмиер запуска исполняемого модуля: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup"
 
-clustername=1CHelper # можно использовать номер порта, если кластен не именной, по имени базы.
+clustername=slbBilling # можно использовать номер порта, если кластен не именной, по имени базы.
 srvname=localhost
-port=5435
+port=5434
 username=postgres
 backupdir_root=/pgbackup
 

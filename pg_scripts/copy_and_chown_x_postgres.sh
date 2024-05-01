@@ -7,7 +7,7 @@
 home_pg=~postgres
 home_pgscripts=${home_pg}/pg_scripts
 
-echo -n "Проверяем есть ли каталог скриптов в \'$home_pg\' ... "
+echo -n "Проверяем есть ли каталог скриптов в '$home_pg' ... "
 if [ ! -f "$home_pgscripts" ]; then
     echo "Отсутвствует!"
     if mkdir -p $home_pgscripts/main/ ; then

@@ -7,6 +7,19 @@
 home_pg=~postgres
 home_pgscripts=${home_pg}/pg_scripts
 
+echo -n "Проверяем есть ли каталог скриптов в \'$home_pg\' ... "
+if [ ! -f "$home_pgscripts" ]; then
+    echo "Отсутвствует!"
+    if mkdir $home_pgscripts/main/ ; then
+        chown -R postgres:postgres $home_pgscripts
+        echo "Создан каталог \'pg_scripts/\'"
+        echo "Создан каталог \'pg_scripts/main/'"
+    else
+        echo "Ошибка при создании каталога \'$home_pgscripts/main\'"
+        exit 1
+    fi
+fi
+
 for file_sh in $(dirname ${BASH_SOURCE[0]})/*.sh
 do
     copy_file=${home_pgscripts}/$(basename ${file_sh})

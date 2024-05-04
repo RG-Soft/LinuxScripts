@@ -29,7 +29,6 @@ do
         else
             echo "Статус disbled или not running!"
         fi
-
     fi
 
     if cp $file_u $copy_file; then
@@ -69,7 +68,6 @@ do
         else
             echo "Статус disbled или not running!"
         fi
-
     fi
 
     if cp $file_u $copy_file; then

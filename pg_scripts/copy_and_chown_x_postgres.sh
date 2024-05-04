@@ -25,7 +25,7 @@ fi
 for file_sh in $(dirname ${BASH_SOURCE[0]})/*.sh
 do
     copy_file=${home_pgscripts}/$(basename ${file_sh})
-    cp -bvu -S bak $file_sh $copy_file
+    cp -bvu -S .bak $file_sh $copy_file
     chown postgres:postgres $copy_file
     chmod +x $copy_file
 done
@@ -33,7 +33,7 @@ done
 for file_sh in $(dirname ${BASH_SOURCE[0]})/main/*.sh
 do
     copy_file=${home_pgscripts}/main/$(basename ${file_sh})
-    cp -bvu -S bak $file_sh $copy_file
+    cp -bvu -S .bak $file_sh $copy_file
     chown postgres:postgres $copy_file
     chmod +x $copy_file
 done

@@ -13,8 +13,8 @@ do
     file_present=0
     service_active=0
 
-    if [ -f "$filename" ]; then
-        echo -n "Найден сервис юнит $filename! ... "
+    if [ -f "$copy_file" ]; then
+        echo -n "Найден сервис юнит $file_name! ... "
         file_present=1
 
         # 0 - program is running or service is OK
@@ -52,8 +52,8 @@ do
     copy_file=/etc/systemd/system/$file_name
     file_present=0
 
-    if [ -f "$filename" ]; then
-        echo -n "Найден тайм юнит $filename! ... "
+    if [ -f "$copy_file" ]; then
+        echo -n "Найден тайм юнит $file_name! ... "
         file_present=1
 
         # 0 - program is running or service is OK
@@ -79,9 +79,9 @@ do
         fi
 
         echo -n "Запускаем и активируем (enable) тайм юнит ... "
-        systemctl start $file_name
         systemctl enable $file_name
-        if [ systemctl status $file_name -ne 0 ]; then
+        systemctl start $file_name
+        if [[ `systemctl status $file_name --no-pager 1>/dev/null` -ne 0 ]]; then
             echo "Ошибка! Тайм юниту не установлен enable статус."
         fi
     fi

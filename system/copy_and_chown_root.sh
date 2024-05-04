@@ -81,9 +81,7 @@ do
 
         echo -n "Запускаем и активируем (enable) тайм юнит ... "
         systemctl enable $file_name
-        echo -n "Включена ... "
         systemctl start $file_name
-        echo "Запущена."
         if [[ `systemctl status $file_name --no-pager 1>/dev/null` -ne 0 ]]; then
             echo "Ошибка! Тайм юниту не установлен enable статус."
         fi

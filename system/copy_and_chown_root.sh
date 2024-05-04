@@ -20,7 +20,7 @@ do
         # 0 - program is running or service is OK
         # 3 - program is not running (файл сервиса есть, но сервис не enabled)
         if [[ `systemctl status $file_name --no-pager 1>/dev/null` -ne 0 ]]; then
-            echo -n "Статус enabled или running! Деактивируем ... "
+            echo "Статус enabled или running! Деактивируем."
             service_active=1
             systemctl stop $file_name # на всякий случай
             echo -n "Остановлена... "
@@ -59,7 +59,7 @@ do
         # 0 - program is running or service is OK
         # 3 - program is not running (файл сервиса есть, но сервис не enabled)
         if [[ `systemctl status $file_name --no-pager 1>/dev/null` -ne 0 ]]; then
-            echo "Статус enabled или running! Деактивируем ... "
+            echo "Статус enabled или running! Деактивируем."
             service_active=1
             systemctl stop $file_name
             echo -n "Остановлена... "

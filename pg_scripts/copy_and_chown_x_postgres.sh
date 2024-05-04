@@ -8,7 +8,7 @@ home_pg=~postgres
 home_pgscripts=${home_pg}/pg_scripts
 
 echo -n "Проверяем есть ли каталог скриптов в '$home_pg' ... "
-if [ ! -f "$home_pgscripts" ]; then
+if [ ! -d "$home_pgscripts" ]; then
     echo "Отсутвствует!"
     if mkdir -p $home_pgscripts/main/ ; then
         chown -R postgres:postgres $home_pgscripts
@@ -18,6 +18,8 @@ if [ ! -f "$home_pgscripts" ]; then
         echo "Ошибка при создании каталога '$home_pgscripts/main'"
         exit 1
     fi
+else
+    echo "Существует!"
 fi
 
 for file_sh in $(dirname ${BASH_SOURCE[0]})/*.sh

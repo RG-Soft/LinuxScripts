@@ -30,6 +30,8 @@ if [ -d "$backupdir_inprogress" ]; then
     echo "Бэкап уже выполняется!"
     echo "Если это остатки прерванного - удалите каталог $backupdir_inprogress вручную"
     exit 100
+else
+    echo "Не выполняется!"
 fi
 
 echo -n "Проверка, что сегодня выполнялся ... "

@@ -35,6 +35,6 @@ ARCHIVE_MODE="off"
 # recovery_target_time = 'yyyy-mm-dd hh:mm:ss.sss'
 # Если не указан параметр, только восстановить согласованноть (до ближайшей точки)
 # Восстановление на 1 апреля 2024 г. 12 часов дня
-#RECOVERY_TARGET="2024-04-24 18:00:00.000"
+RECOVERY_TARGET="2024-04-24 18:00:00.000"
 
-$(dirname ${BASH_SOURCE[0]})/main/restore_basebackup.sh $PORT $PG_SETUP_NAME $PATH_PG_DATA $PATH_TO_FILE_BASEBACKUP $PATH_TO_FILES_BACKUP_WAL $ARCHIVE_MODE
+$(dirname ${BASH_SOURCE[0]})/main/restore_basebackup.sh $PORT $PG_SETUP_NAME $PATH_PG_DATA $PATH_TO_FILE_BASEBACKUP $PATH_TO_FILES_BACKUP_WAL $ARCHIVE_MODE "$RECOVERY_TARGET"

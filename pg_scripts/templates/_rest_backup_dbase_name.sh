@@ -13,6 +13,7 @@ developer=Deynega
 #. Уточните адрес каталога бэкапа
 backup_dir=/mnt/ru0222app48/${dbname_source}/${dbname_source}_now	# Бэкап на рабочем сервере
 #backup_dir=/pgbackup/current_backup/now.Z_St		# Бэкап на текущем сервере
+#----------------------------------------------------------------------------
 
 dbname=${dbname_source}_${developer}
 srvname=localhost

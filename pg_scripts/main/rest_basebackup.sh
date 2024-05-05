@@ -52,6 +52,12 @@ else
 
     #echo "recovery_target_time = '2024-04-24 16:00:00.000'" >>$PATH_PG_DATA/postgresql.auto.conf
     #echo "recovery_target_time = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
+    
+    if [ $# = 7 ]; then
+     echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf
+    else
+     echo "recovery_target = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
+    fi
 
     if [ $# = 7 ]; then
      echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf

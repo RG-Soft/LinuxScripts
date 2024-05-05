@@ -1,0 +1,16 @@
+# Сервис юнит для регламента обслуживания баз кластера PG
+# RG-Soft
+#
+
+[Unit]
+Description=Storage for SQL Backup data Zakupki
+Requires=network-online.target
+After=network-online.service
+
+[Mount]
+What=ru0222app48.earaa1315.slb.com:/pgbackup
+Where=/mnt/ru0222app48
+Type=nfs
+
+[Install]
+WantedBy=multi-user.target

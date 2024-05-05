@@ -2,8 +2,8 @@
 #
 # RGS Модуль установки repack во все базы кластера
 #
-#Пример запуска стартера:            ./repack_install_cluster_5432.sh
-#Прмиер запуска исполняемого модуля: ./repack_install_cluster.sh srv01 5432 postgres"
+# Пример запуска стартера:            ./repack_install_cluster_5432.sh
+# Прмиер запуска исполняемого модуля: ./repack_install_cluster.sh srv01 5432 postgres
 
 USAGE_STRING="Использовать: $0 hosthame port username
 Пример: ./repack_install_cluster.sh srv01 5432 postgres"

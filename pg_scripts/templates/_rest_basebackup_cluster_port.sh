@@ -2,6 +2,7 @@
 #--------------------------------------------------------------------
 # Script to start restore_basebackup.sh  restore cluster PostgreSQL with parameters. Linux Ubuntu (22.04)
 #
+# RGS
 # Developed by Aleskandr Seryakov 01.04.2024
 #--------------------------------------------------------------------
 

@@ -2,6 +2,7 @@
 #--------------------------------------------------------------------
 # Script to restore cluster PostgreSQL on point in time. Linux Ubuntu (22.04)
 #
+# RGS
 # Developed by Aleskandr Seryakov 01.04.2024
 #--------------------------------------------------------------------
 
@@ -51,7 +52,7 @@ else
 
     #echo "recovery_target_time = '2024-04-24 16:00:00.000'" >>$PATH_PG_DATA/postgresql.auto.conf
     #echo "recovery_target_time = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
-    
+
     if [ $# = 7 ]; then
      echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf
     else

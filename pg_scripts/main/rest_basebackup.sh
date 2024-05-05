@@ -15,7 +15,7 @@ else
     echo " Ошибка!"
     echo "Parameter PATH_PG_DATA must be filled correct!"
   else
-    echo " Корректно!"
+    echo "Корректно!"
 
     PORT=$1 
     PG_SETUP_NAME=$2
@@ -23,7 +23,7 @@ else
     PATH_TO_FILE_BASEBACKUP=$4
     PATH_TO_FILES_BACKUP_WAL=$5
     ARCHIVE_MODE=$6
-    #RECOVERY_TARGET=$7
+    RECOVERY_TARGET=$7
 
     echo -n "Останавливаем сервис ... "
     /opt/pgpro/std-15/bin/$PG_SETUP_NAME service stop
@@ -49,14 +49,14 @@ else
     echo "recovery_target_action = 'promote'" >>$PATH_PG_DATA/postgresql.auto.conf
     echo "restore_command = 'cp $PATH_TO_FILES_BACKUP_WAL/%f %p'" >>$PATH_PG_DATA/postgresql.auto.conf
 
-    #if [ $# = 7 ]; then
-    # echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf
-    #else
-    # echo "recovery_target = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
-    #fi;
-
-    echo "recovery_target_time = '2024-04-24 16:00:00.000'" >>$PATH_PG_DATA/postgresql.auto.conf
+    #echo "recovery_target_time = '2024-04-24 16:00:00.000'" >>$PATH_PG_DATA/postgresql.auto.conf
     #echo "recovery_target_time = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
+    
+    if [ $# = 7 ]; then
+     echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf
+    else
+     echo "recovery_target = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
+    fi
 
     touch $PATH_PG_DATA/recovery.signal
     chmod 600 $PATH_PG_DATA/recovery.signal

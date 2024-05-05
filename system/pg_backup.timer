@@ -4,10 +4,10 @@
 
 [Unit]
 Description=PG. Backup DB daily maintenance schedule service for databases
-Requires=pg_backupdb.service
+Requires=pg_backup.service
 
 [Timer]
-Unit=pg_backupdb.service
+Unit=pg_backup.service
 OnCalendar=Mon..Sat *-*-* 02:00:00
 
 [Install]

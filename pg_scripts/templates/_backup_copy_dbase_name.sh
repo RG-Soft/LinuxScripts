@@ -4,9 +4,12 @@
 #
 #Пример запуска стартера:            ./backup_copy_dbase_name.sh
 
+# ///////////////////////////////////////////////////////////////
+# Пользовательские параметры адаптируеются под настройки серверов
 dbasename=db_saler
 backupdir=/pgbackup/$dbasename/${dbasename}_now
 copydir=/mnt/ru0994app40_sqlbackup/${dbasename}_$(date +'%Y%m%d')
+# ///////////////////////////////////////////////////////////////
 
 echo "Запускаем копирование бэкапа базы ${dbasename} ..."
 if [ ! -d "$copydir" ]; then

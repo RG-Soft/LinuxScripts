@@ -5,12 +5,11 @@
 #
 [Unit]
 Description=PG. Copy backup DB daily maintenance schedule service for databases
-Wants=pg_backup_copy.timer
+Requires=pg_backup_copy.service
 
-[Service]
-Type=oneshot
-ExecStart=/var/lib/postgresql/pg_scripts/backup_copy_dbase_dbsaler1.sh
-
+[Timer]
+Unit=pg_backup_copy.service
+OnCalendar=Mon..Sat *-*-* 04:00:00
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=timers.target

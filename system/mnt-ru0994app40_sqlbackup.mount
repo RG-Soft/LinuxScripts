@@ -1,0 +1,20 @@
+#
+# RG-Soft
+#
+# Сервис юнит для регламента обслуживания баз кластера PG
+#
+#
+
+[Unit]
+Description=Storage for SQL Backup data Zakupki
+Requires=network-online.target
+After=network-online.target
+
+[Mount]
+What=//ru0994app40.dir.slb.com/sqlbackup/zakupki
+Where=/mnt/ru0994app40_sqlbackup
+Type=cifs
+Options=credentials=/etc/win-credentials,rw,uid=1454697533,gid=1454681708,nofail,_netdev,iocharset=utf8
+
+[Install]
+WantedBy=multi-user.target

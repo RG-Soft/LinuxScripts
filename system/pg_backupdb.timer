@@ -1,0 +1,14 @@
+# Сервис юнит для регламента обслуживания баз кластера PG
+# RG-Soft
+#
+
+[Unit]
+Description=PG. Backup DB daily maintenance schedule service for databases
+Requires=pg_backupdb.service
+
+[Timer]
+Unit=pg_backupdb.service
+OnCalendar=Mon..Sat *-*-* 02:00:00
+
+[Install]
+WantedBy=timers.target

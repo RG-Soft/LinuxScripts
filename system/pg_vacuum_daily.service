@@ -11,10 +11,10 @@ Wants=pg_vacuum_daily.timer
 [Service]
 Type=oneshot
 User=postgres
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_1chelper.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_slbbilling.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_toezgp.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_tpm_wo.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_1chelper_daily.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_slbbilling_daily.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_toezgp_daily.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_tpm_wo_daily.sh
 
 [Install]
 WantedBy=multi-user.target

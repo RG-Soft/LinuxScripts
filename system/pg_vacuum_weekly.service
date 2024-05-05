@@ -11,9 +11,9 @@ Wants=pg_vacuum_weekly.timer
 [Service]
 Type=oneshot
 User=postgres
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_weekly_pawcmfr.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_weekly_slberm.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_weekly_slbsvs_acc.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_dbase_pawcmfr_weekly.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_dbase_slberm_weekly.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_dbase_slbsvs_acc_weekly.sh
 
 [Install]
 WantedBy=multi-user.target

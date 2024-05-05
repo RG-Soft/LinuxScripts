@@ -6,13 +6,13 @@
 #Прмиер запуска исполняемого модуля: ./rest_backup_dbase.sh srv01 5432 dbsaler1 postgres 3"
 #-----------------------Часто изменяемые параметры----------------------------
 #. Введите имя базы из которой надо залить бэкап. Обычно это имя рабочей базы.
-dbname_source=TOEZGP
+dbname_source=Zakupki
 #. Введите фамилию сотрудника для которого надо залить бэкап. Это фамилия сотрудника + возможно номер или другое
-developer=Susov
-#----------------------------------------------------------------------------
+developer=Petrochenko
 #. Уточните адрес каталога бэкапа
-backup_dir=/mnt/ru0222app53/${dbname_source}/${dbname_source}_now	# Бэкап на рабочем сервере
+backup_dir=/pgbackup/ru0222app48/${dbname_source}/${dbname_source}_now	# Бэкап на рабочем сервере
 #backup_dir=/pgbackup/current_backup/now.Z_St		# Бэкап на текущем сервере
+#----------------------------------------------------------------------------
 
 dbname=${dbname_source}_${developer}
 srvname=localhost

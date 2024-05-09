@@ -26,14 +26,16 @@ else
     ARCHIVE_MODE=$6
     RECOVERY_TARGET=$7
 
+    path_pg_bin=/opt/pgpro/std-15/bin
+
     echo -n "Останавливаем сервис ... "
-    /opt/pgpro/std-15/bin/$PG_SETUP_NAME service stop
+    $path_pg_bin/$PG_SETUP_NAME service stop
     echo "Выполнено!"
 
     sleep 5
 
     echo -n "Удаляем файлы мз каталога кластера ... "
-    if (( ${#PATH_PG_DATA} < 5 )); then
+    if (( ${#PATH_PG_DATA} < 2 )); then
       echo "Ошибка!"
       echo "Слишком короткий путь, проверьте параметр \"PATH_PG_DATA\" ${PATH_PG_DATA}"
       exit 100
@@ -63,11 +65,11 @@ else
     chmod 600 $PATH_PG_DATA/recovery.signal
     chown postgres:postgres $PATH_PG_DATA/recovery.signal
 
-    /opt/pgpro/std-15/bin/$PG_SETUP_NAME service condrestart
+    $path_pg_bin/$PG_SETUP_NAME service condrestart
 
     sleep 5
 
-    /opt/pgpro/std-15/bin/$PG_SETUP_NAME service status
+    $path_pg_bin/$PG_SETUP_NAME service status
 
   fi;
 

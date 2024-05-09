@@ -4,6 +4,8 @@
 #
 #Пример запуска модуля: ./chown_root.sh
 
+need_reload_config=0
+
 for file_u in $(dirname ${BASH_SOURCE[0]})/*.service
 do
     echo "Обрабатывается файл сервис юнита $file_u"
@@ -20,26 +22,19 @@ do
         # 0 - program is running or service is OK
         # 3 - program is not running (файл сервиса есть, но сервис не enabled)
         if [[ `systemctl status $file_name --no-pager 1>/dev/null` -ne 0 ]]; then
-            echo -n "Статус enabled или running! Деактивируем ... "
-            #service_active=1
+            echo -n "Статус enabled или running! Ошибочное состояние. Деактивируем ... "
             systemctl stop $file_name # на всякий случай
             echo -n "Остановлена... "
             systemctl disable $file_name #такой юнит не должен быть enable
             echo "Выключена."
         else
-            echo "Статус disbled или not running!"
+            echo "Статус disbled или not running! Нормальное состояние статуса сервис юнита."
         fi
     fi
 
     if cp $file_u $copy_file; then
         echo "Юнит скопирован в каталог system"
         chown root:root $copy_file
-
-        #if [[ $service_file_present -eq 1 ]]; then
-        #    echo -n "Файл юнита был ранее в system, будет перезагружена конфигурация systemd ... "
-        #    systemctl daemon-reload
-        #    echo "Выполнено!"
-        #fi
     else
         echo "Ошибка копирования юнита сервиса ${copy_file}..."
     fi
@@ -61,15 +56,11 @@ do
 
         # 0 - program is running or service is OK
         # 3 - program is not running (файл сервиса есть, но сервис не enabled)
-        if [[ `systemctl status $file_name --no-pager 1>/dev/null` -ne 0 ]]; then
-            #echo "Статус enabled или running! Деактивируем ... "
+        if [[ `systemctl status $file_name --no-pager 1>/dev/null` -eq 0 ]]; then
+            echo "Статус enabled или running! Нормальное состояние таймер юнита"
             service_active=1
-            #systemctl stop $file_name
-            #echo -n "Остановлена... "
-            #systemctl disable $file_name
-            #echo "Выключена. "
         else
-            echo "Статус disbled или not running!"
+            echo "Статус disbled или not running! Внимание! Юнит надо включить или актуализировать библиотеку"
         fi
     fi
 
@@ -79,9 +70,9 @@ do
 
         if [[ $service_file_present -eq 1 ]] || [[ $timer_file_present -eq 1 ]]; then
             echo "Файлы юнитов были ранее в system, будет перезагружена конфигурация systemd"
-            systemctl daemon-reload
+			let "need_reload_config++"
         else
-            echo -n "Запускаем и активируем (enable) тайм юнит ... "
+            echo -n "Запускаем и активируем (enable, start) тайм юнит ... "
             systemctl enable $file_name
             echo -n "Включена ... "
             systemctl start $file_name
@@ -95,3 +86,12 @@ do
     fi
     echo
 done
+
+if (( $need_reload_config > 0 ));  then
+    echo -n "Требуется перезагрузка конфигурации сервисов systemd ... "
+    systemctl daemon-reload
+    echo "Выполнено!"
+fi
+
+echo "Завершено обноление сервисов."
+echo

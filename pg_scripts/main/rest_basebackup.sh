@@ -59,12 +59,6 @@ else
      echo "recovery_target = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
     fi
 
-    if [ $# = 7 ]; then
-     echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf
-    else
-     echo "recovery_target = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
-    fi
-
     touch $PATH_PG_DATA/recovery.signal
     chmod 600 $PATH_PG_DATA/recovery.signal
     chown postgres:postgres $PATH_PG_DATA/recovery.signal

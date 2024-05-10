@@ -102,7 +102,9 @@ do
     echo
 done
 
-for file_u in $(dirname ${BASH_SOURCE[0]})/*.mount
+#shopt -s nullglob
+#for file_u in $(dirname ${BASH_SOURCE[0]})/*.mount
+for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.mount' | sort )
 do
     echo "Обрабатывается файл юнита монтирования $file_u"
 

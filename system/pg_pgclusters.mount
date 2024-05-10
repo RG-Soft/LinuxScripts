@@ -1,0 +1,18 @@
+#
+# RG-Soft
+#
+# Сервис юнит для регламента обслуживания баз кластера PG
+#
+#
+
+[Unit]
+Description=Mount PostgreSQL clusters
+
+[Mount]
+What=/dev/sdc1
+Where=/mnt/pgclusters/
+Type=ext4
+Options=rw
+
+[Install]
+WantedBy=multi-user.target

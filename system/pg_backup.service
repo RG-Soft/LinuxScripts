@@ -1,0 +1,18 @@
+# Сервис юнит для регламента обслуживания баз кластера PG
+# RG-Soft
+#
+# Сервис юнит бэкапирования баз для регламента обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Backup daily maintenance schedule service for databases
+Wants=pg_backup.timer
+
+[Service]
+Type=oneshot
+User=postgres
+ExecStart=/var/lib/postgresql/pg_scripts/backup_Spectr_BP.sh
+ExecStart=/var/lib/postgresql/pg_scripts/backup_Spectr_Zup.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -11,7 +11,7 @@ Wants=pg_repack.timer
 [Service]
 Type=oneshot
 User=postgres
-ExecStart=/var/lib/postgresql/pg_scripts/repack_daily.sh
+ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_5432.sh
 
 [Install]
 WantedBy=multi-user.target

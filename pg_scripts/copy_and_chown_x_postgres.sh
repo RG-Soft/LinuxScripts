@@ -22,7 +22,9 @@ else
     echo "Существует!"
 fi
 
-for file_sh in $(dirname ${BASH_SOURCE[0]})/*.sh
+#shopt -s nullglob
+#for file_sh in $(dirname ${BASH_SOURCE[0]})/*.sh
+for file_sh in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.sh' | sort )
 do
     copy_file=${home_pgscripts}/$(basename ${file_sh})
     cp -bvu -S .bak $file_sh $copy_file
@@ -30,7 +32,9 @@ do
     chmod +x $copy_file
 done
 
-for file_sh in $(dirname ${BASH_SOURCE[0]})/main/*.sh
+#shopt -s nullglob
+#for file_sh in $(dirname ${BASH_SOURCE[0]})/main/*.sh
+for file_sh in $( find $(dirname ${BASH_SOURCE[0]})/main -maxdepth 1 -type f -name '*.sh' | sort )
 do
     copy_file=${home_pgscripts}/main/$(basename ${file_sh})
     cp -bvu -S .bak $file_sh $copy_file

@@ -6,7 +6,9 @@
 
 need_reload_config=0
 
-for file_u in $(dirname ${BASH_SOURCE[0]})/*.service
+#shopt -s nullglob
+#for file_u in $(dirname ${BASH_SOURCE[0]})/*.service
+for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.service' | sort )
 do
     echo "Обрабатывается файл сервис юнита $file_u"
 
@@ -41,7 +43,9 @@ do
     echo
 done
 
-for file_u in $(dirname ${BASH_SOURCE[0]})/*.timer
+#shopt -s nullglob
+#for file_u in $(dirname ${BASH_SOURCE[0]})/*.timer
+for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.timer' | sort )
 do
     echo "Обрабатывается файл тайм юнита $file_u"
 
@@ -89,7 +93,9 @@ do
     echo
 done
 
-for file_u in $(dirname ${BASH_SOURCE[0]})/*.mount
+#shopt -s nullglob
+#for file_u in $(dirname ${BASH_SOURCE[0]})/*.mount
+for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.mount' | sort )
 do
     echo "Обрабатывается файл юнита монтирования $file_u"
 

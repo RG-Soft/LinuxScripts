@@ -11,8 +11,8 @@ Wants=pg_vacuum_daily.timer
 [Service]
 Type=oneshot
 User=postgres
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_Spectr_BP.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_Spectr_Zup.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_dbase_Spectr_BP_daily.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_dbase_Spectr_Zup_daily.sh
 
 [Install]
 WantedBy=multi-user.target

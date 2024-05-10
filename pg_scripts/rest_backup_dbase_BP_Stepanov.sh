@@ -1,31 +1,24 @@
 #!/bin/bash
-
-#. Введите имя базы в которую надо залить бэкап
-dbname=Spectr_BP_Stepanov
-#. Введите адрес каталога бэкапа
-backup_dir=/mnt/pgbackup/Spectr_BP_20240322	# Бэкап на рабочем сервере
+#
+# RGS Стартер восстановления базы из бэкапа pg_dump в базу
+#
+# Пример запуска стартера:            ./rest_backup_dbase_name.sh
+# Пример запуска исполняемого модуля: ./rest_backup_dbase.sh srv01 5432 dbsaler1 postgres 3 /pgbackup/dbsaler1_now
+#-----------------------Часто изменяемые параметры----------------------------
+#. Введите имя базы из которой надо залить бэкап. Обычно это имя рабочей базы.
+dbname_source=Spectr_BP
+#. Введите фамилию сотрудника для которого надо залить бэкап. Это фамилия сотрудника + возможно номер или другое
+developer=Stepanov
+#----------------------------------------------------------------------------
+#. Уточните адрес каталога бэкапа
+backup_dir=/mnt/pgbackup/${dbname_source}/${dbname_source}_20240322	# Бэкап на рабочем сервере
 #backup_dir=/pgbackup/current_backup/now		# Бэкап на текущем сервере
+#----------------------------------------------------------------------------
 
-
-hostname=localhost
+dbname=${dbname_source}_${developer}
+srvname=localhost
 port=5432
 username=postgres
-jobs=3
+jobs=3 # количество должно быть CPU/2 - максимум на слабых машинах.
 
-if /opt/pgpro/std-15/bin/dropdb --host $hostname --port $port --username $username --if-exists --no-password --echo $dbname; then
-
-    if /opt/pgpro/std-15/bin/createdb --host $hostname --port $port --username $username --echo --owner $username --no-password --encoding UTF8 --tablespace pg_default $dbname; then
-
-	if /opt/pgpro/std-15/bin/pg_restore --host $hostname --port $port --username $username --no-password --dbname $dbname --jobs $jobs --verbose $backup_dir; then
-
-	    /opt/pgpro/std-15/bin/vacuumdb --host $hostname --port $port --username $username --no-password --dbname $dbname --jobs $jobs --analyze --freeze
-
-	else
-	    echo "Базу \"$dbname\" восстановить из бэкапа \"$backup_dir\" не получилось..."
-	fi
-    else
-	echo "Базу \"$dbname\" создать не получилось..."
-    fi
-else
-    echo "Базу \"$dbname\" удалить не получилось..."
-fi
+$(dirname ${BASH_SOURCE[0]})/main/rest_backup_dbase.sh $srvname $port $dbname $username $jobs $backup_dir

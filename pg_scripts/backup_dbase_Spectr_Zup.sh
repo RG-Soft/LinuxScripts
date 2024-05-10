@@ -1,25 +1,21 @@
 #!/bin/bash
 
+#
+# RGS Стартер бэкапирование базы кластера
+#
+# Пример запуска стартера:            ./backup_dbase_name.sh
+# Пример запуска исполняемого модуля: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954
+
+# ///////////////////////////////////////////////////////////////
+# Пользовательские параметры адаптируеются под настройки серверов
 dbname=Spectr_Zup
 srvname=localhost
 port=5432
 username=postgres
 jobs=3
-backupdir=/mnt/pgbackup/${dbname}_$(date +'%Y%m%d')
-backupdir_inprogress=$backupdir.backuping
+backupdir_root=/pgbackup
+#backup_suffix=_now # История бэкапов не ведется, бэкап используется для перезаливки баз разработчиков
+backup_suffix=$(date +'%Y%m%d_%H%M%S') # История бэкапов ведется, бэкап сохраняется в каталог с меткой времени
+# ///////////////////////////////////////////////////////////////
 
-if [ -d "$backupdir_inprogress" ]; then
-    echo "Бэкап уже выполняется! Если был прерван - удалите каталог $backupdir_inprogress вручную"
-    exit 100
-fi
-
-if [ ! -d "$backupdir" ]; then
-    mkdir -p $backupdir_inprogress
-else
-    rm -f $backupdir/*
-    mv $backupdir $backupdir_inprogress
-fi
-
-pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 --verbose --file $backupdir_inprogress $dbname
-
-mv $backupdir_inprogress $backupdir
+$(dirname ${BASH_SOURCE[0]})/main/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root $backup_suffix

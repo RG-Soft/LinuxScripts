@@ -24,7 +24,7 @@ fi
 
 #shopt -s nullglob
 #for file_sh in $(dirname ${BASH_SOURCE[0]})/*.sh
-for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.sh' | sort )
+for file_sh in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.sh' | sort )
 do
     copy_file=${home_pgscripts}/$(basename ${file_sh})
     cp -bvu -S .bak $file_sh $copy_file
@@ -34,7 +34,7 @@ done
 
 #shopt -s nullglob
 #for file_sh in $(dirname ${BASH_SOURCE[0]})/main/*.sh
-for file_u in $( find $(dirname ${BASH_SOURCE[0]})/main -maxdepth 1 -type f -name '*.sh' | sort )
+for file_sh in $( find $(dirname ${BASH_SOURCE[0]})/main -maxdepth 1 -type f -name '*.sh' | sort )
 do
     copy_file=${home_pgscripts}/main/$(basename ${file_sh})
     cp -bvu -S .bak $file_sh $copy_file

@@ -1,7 +1,6 @@
 #!/bin/bash
-
 #
-# RGS регламент еженедельный vacuumdb базы кластера
+# RGS Модуль регламента vacuumdb для базы кластера
 #
 # Пример запуска стартера ежедневный  : ./vacuumdb_dbase_dbsaler_daily.sh
 # Пример запуска стартера еженедельный: ./vacuumdb_dbase_dbsaler_weekly.sh

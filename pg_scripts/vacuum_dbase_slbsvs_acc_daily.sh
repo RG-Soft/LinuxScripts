@@ -8,11 +8,11 @@
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов
-dbname=slbERM
+dbname=slbSVS_acc
 srvname=localhost
-port=5433
+port=5434
 username=postgres
 jobs=2
 # ///////////////////////////////////////////////////////////////
 
-$(dirname ${BASH_SOURCE[0]})/main/vacuumdb_dbase.sh $srvname $port $dbname $username $jobs
+$(dirname ${BASH_SOURCE[0]})/main/vacuum_dbase.sh $srvname $port $dbname $username $jobs

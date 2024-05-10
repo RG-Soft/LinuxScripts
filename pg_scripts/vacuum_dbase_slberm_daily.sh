@@ -8,12 +8,11 @@
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов
-#dbname=PAWCMFR
-dbname=PAWCMFR_Stepanov # Временная база
+dbname=slbERM
 srvname=localhost
-port=5432
+port=5433
 username=postgres
 jobs=2
 # ///////////////////////////////////////////////////////////////
 
-$(dirname ${BASH_SOURCE[0]})/main/vacuumdb_dbase.sh $srvname $port $dbname $username $jobs
+$(dirname ${BASH_SOURCE[0]})/main/vacuum_dbase.sh $srvname $port $dbname $username $jobs

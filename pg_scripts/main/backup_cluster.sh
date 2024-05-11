@@ -2,8 +2,8 @@
 #
 # RGS Стартер бэкапирование всех баз кластера
 #
-#Пример запуска стартера:            ./backup_cluster_5432.sh
-#Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 "test1 test2""
+# Пример запуска стартера:            ./backup_cluster_5432.sh
+# Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 "test1 test2""
 
 USAGE_STRING="Использовать: $0 hosthame port username jobs backup_dir time_lable
 Прмиер запуска исполняемого модуля: ./backup_cluster.sh srv01 5432 postgres 3 /pgbackup 20240312_100954 \"test1 test2\""

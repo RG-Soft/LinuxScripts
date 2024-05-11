@@ -2,8 +2,8 @@
 #
 # RGS Исполняемый модуль регламента basebackup и wal файлов кластера для оформления каталога и копирования в "облоко".
 #
-#Пример запуска модуля:              ./basebackup_and_wal_copy_zakupki.sh
-#Прмиер запуска исполняемого модуля: ./basebackup_and_wal_copy.sh Zakupki /pgbackup/Zakupki/walbackup/ /pgbackup/Zakupki/basebackup/ /mnt/nas02_YANDEX/SQLBackup/Zakupki/"
+# Пример запуска модуля:              ./basebackup_and_wal_copy_zakupki.sh
+# Прмиер запуска исполняемого модуля: ./basebackup_and_wal_copy.sh Zakupki /pgbackup/Zakupki/walbackup/ /pgbackup/Zakupki/basebackup/ /mnt/nas02_YANDEX/SQLBackup/Zakupki/"
 
 USAGE_STRING="Использовать: $0 clastername walbackup_dir basebackup_dir basebackup_cloud_dir
 Пример: ./basebackup_and_wal_copy.sh 5432 /pgbackup/5432/walbackup/ /pgbackup/5432/basebackup/ /mnt/nas02_YANDEX/SQLBackup/5432/"

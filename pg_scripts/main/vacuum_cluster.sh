@@ -2,9 +2,9 @@
 #
 # RGS Модуль регламента vacuumdb для всех баз кластера
 #
-#Пример запуска стартера ежедневный  : ./vacuumdb_cluster_5432_daily.sh
-#Пример запуска стартера еженедельный: ./vacuumdb_cluster_5432_weekly.sh
-#Прмиер запуска исполняемого модуля  : ./vacuumdb_cluster.sh srv01 5432 postgres 3 "base1 base3" [FREEZE]
+# Пример запуска стартера ежедневный  : ./vacuumdb_cluster_5432_daily.sh
+# Пример запуска стартера еженедельный: ./vacuumdb_cluster_5432_weekly.sh
+# Прмиер запуска исполняемого модуля  : ./vacuumdb_cluster.sh srv01 5432 postgres 3 "base1 base3" [FREEZE]
 
 USAGE_STRING="Использовать: $0 hosthame port dbname username jobs [FREEZE]
 Пример ежедневный  : ./vacuumdb_cluster.sh srv01 5432 postgres 3 \"base1 base3\"

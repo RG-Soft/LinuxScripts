@@ -4,11 +4,12 @@
 #
 #Пример запуска модуля: ./chown_root.sh
 
+dev_pgscripts="$(dirname ${BASH_SOURCE[0]})"
 need_reload_config=0
 
 #shopt -s nullglob
 #for file_u in $(dirname ${BASH_SOURCE[0]})/*.service
-for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.service' | sort )
+for file_u in $( find "$dev_pgscripts" -maxdepth 1 -type f -name '*.service' | sort )
 do
     echo "Обрабатывается файл сервис юнита $file_u"
 
@@ -34,9 +35,9 @@ do
         fi
     fi
 
-    if cp $file_u $copy_file; then
+    if cp "$file_u" "$copy_file"; then
         echo "Юнит скопирован в каталог system"
-        chown root:root $copy_file
+        chown root:root "$copy_file"
     else
         echo "Ошибка копирования юнита сервиса ${copy_file}..."
     fi
@@ -45,7 +46,7 @@ done
 
 #shopt -s nullglob
 #for file_u in $(dirname ${BASH_SOURCE[0]})/*.timer
-for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.timer' | sort )
+for file_u in $( find "$dev_pgscripts" -maxdepth 1 -type f -name '*.timer' | sort )
 do
     echo "Обрабатывается файл тайм юнита $file_u"
 
@@ -70,9 +71,9 @@ do
         fi
     fi
 
-    if cp $file_u $copy_file; then
+    if cp "$file_u" "$copy_file"; then
         echo "Юнит скопирован в каталог system"
-        chown root:root $copy_file
+        chown root:root "$copy_file"
 
         if [[ $timer_file_present -eq 1 ]]; then
             echo "Файлы юнитов были ранее в system, будет перезагружена конфигурация systemd"
@@ -95,7 +96,7 @@ done
 
 #shopt -s nullglob
 #for file_u in $(dirname ${BASH_SOURCE[0]})/*.mount
-for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.mount' | sort )
+for file_u in $( find "$dev_pgscripts" -maxdepth 1 -type f -name '*.mount' | sort )
 do
     echo "Обрабатывается файл юнита монтирования $file_u"
 
@@ -116,7 +117,7 @@ do
         fi
     fi
 
-    if cp $file_u $copy_file; then
+    if cp "$file_u" "$copy_file"; then
         echo "Юнит скопирован в каталог system"
         chown root:root $copy_file
 

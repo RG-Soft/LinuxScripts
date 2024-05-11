@@ -4,8 +4,6 @@
 #
 #Пример запуска модуля: ./chown_root.sh
 
-need_reload_config=0
-
 dev_pgscripts="$(dirname ${BASH_SOURCE[0]})"
 need_reload_config=0
 
@@ -39,13 +37,7 @@ do
 
     if cp "$file_u" "$copy_file"; then
         echo "Юнит скопирован в каталог system"
-        chown root:root $copy_file
-
-        #if [[ $service_file_present -eq 1 ]]; then
-        #    echo -n "Файл юнита был ранее в system, будет перезагружена конфигурация systemd ... "
-        #    systemctl daemon-reload
-        #    echo "Выполнено!"
-        #fi
+        chown root:root "$copy_file"
     else
         echo "Ошибка копирования юнита сервиса ${copy_file}..."
     fi
@@ -104,7 +96,7 @@ done
 
 #shopt -s nullglob
 #for file_u in $(dirname ${BASH_SOURCE[0]})/*.mount
-for file_u in $( find $(dirname ${BASH_SOURCE[0]}) -maxdepth 1 -type f -name '*.mount' | sort )
+for file_u in $( find "$dev_pgscripts" -maxdepth 1 -type f -name '*.mount' | sort )
 do
     echo "Обрабатывается файл юнита монтирования $file_u"
 
@@ -125,7 +117,7 @@ do
         fi
     fi
 
-    if cp $file_u $copy_file; then
+    if cp "$file_u" "$copy_file"; then
         echo "Юнит скопирован в каталог system"
         chown root:root $copy_file
 

@@ -1,10 +1,9 @@
 #!/bin/bash
-
 #
 # RGS бэкапирование базы кластера
 #
-#Пример запуска стартера:            ./backup_dbname.sh
-#Прмиер запуска исполняемого модуля: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
+# Пример запуска стартера:            ./backup_dbname.sh
+# Прмиер запуска исполняемого модуля: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"
 
 USAGE_STRING="Usage: $0 hosthame port dbname username jobs backupdir
 example: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100954"

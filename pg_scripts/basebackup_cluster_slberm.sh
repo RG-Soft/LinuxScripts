@@ -2,8 +2,8 @@
 #
 # RGS Стартер модуль регламента basebackup для кластера.
 #
-#Пример запуска модуля:              ./basebackup_cluster_5432.sh
-#Прмиер запуска исполняемого модуля: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup NO
+# Пример запуска модуля:              ./basebackup_cluster_5432.sh
+# Прмиер запуска исполняемого модуля: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup NO
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов

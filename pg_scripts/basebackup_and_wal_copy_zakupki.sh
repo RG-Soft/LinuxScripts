@@ -2,8 +2,8 @@
 #
 # RGS Стартер модуль регламента basebackup и wal файлов кластера для оформления каталога и копирования в "облоко".
 #
-#Пример запуска модуля:              ./basebackup_and_wal_copy_zakupki.sh
-#Прмиер запуска исполняемого модуля: ./basebackup_and_wal_copy.sh Zakupki /pgbackup/Zakupki/walbackup/ /pgbackup/Zakupki/basebackup/ /mnt/nas02_YANDEX/SQLBackup/Zakupki/
+# Пример запуска модуля:              ./basebackup_and_wal_copy_zakupki.sh
+# Прмиер запуска исполняемого модуля: ./basebackup_and_wal_copy.sh Zakupki /pgbackup/Zakupki/walbackup/ /pgbackup/Zakupki/basebackup/ /mnt/nas02_YANDEX/SQLBackup/Zakupki/
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов

@@ -31,7 +31,7 @@ do
             systemctl disable $file_name #такой юнит не должен быть enable
             echo "Выключена."
         else
-            echo "Статус disbled или not running!"
+            echo "Статус disabled или not running! Нормальное состояние статуса сервис юнита."
         fi
     fi
 
@@ -66,7 +66,7 @@ do
             echo "Статус enabled или running! Нормальное состояние таймер юнита"
             service_active=1
         else
-            echo "Статус disbled или not running!"
+            echo "Статус disabled или not running!"
             echo "Внимание! Юнит надо ВРУЧНУЮ включить или актуализировать библиотеку"
         fi
     fi
@@ -113,7 +113,7 @@ do
         if [[ `systemctl status $file_name --no-pager 1>/dev/null` -eq 0 ]]; then
             echo "Статус enabled или running! Нормальное состояние таймер юнита"
         else
-            echo "Статус disbled или not running! Внимание! Юнит надо включить или актуализировать библиотеку"
+            echo "Статус disabled или not running! Внимание! Юнит надо включить или актуализировать библиотеку"
         fi
     fi
 

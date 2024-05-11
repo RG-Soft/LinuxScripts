@@ -2,8 +2,8 @@
 #
 # RGS Модуль регламента basebackup для кластера.
 #
-#Пример запуска модуля:              ./basebackup_cluster_5432.sh
-#Прмиер запуска исполняемого модуля: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup NO
+# Пример запуска модуля:              ./basebackup_cluster_5432.sh
+# Прмиер запуска исполняемого модуля: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup NO
 
 USAGE_STRING="Использовать: $0 hosthame port username clustername backupdir
 Пример: ./basebackup_cluster.sh srv01 5432 postgres db_saler /pgbackup [NO|YES]
@@ -35,17 +35,18 @@ else
 fi
 
 echo -n "Проверка, что сегодня выполнялся ... "
-if [ "$backupdir_rewrite" == "YES" ]; then
-    if [ ! -d "$backupdir" ]; then
-        mkdir -p $backupdir_inprogress
-    else
+
+if [ ! -d "$backupdir" ]; then
+    mkdir -p $backupdir_inprogress
+else
+    if [ "$backupdir_rewrite" == "YES" ]; then
         rm -f $backupdir/*
         mv $backupdir $backupdir_inprogress
+    else
+        echo "Бэкап уже выполнен сегодня!"
+        echo "Если надо заново, запустите с параметром backupdir_rewrite == YES"
+        exit 100
     fi
-else
-    echo "Бэкап уже выполнен сегодня!"
-    echo "Если надо заново, запустите с параметром backupdir_rewrite == YES"
-    exit 100
 fi
 
 echo "--==Start  cluster $clustername pg_basebackup==--"

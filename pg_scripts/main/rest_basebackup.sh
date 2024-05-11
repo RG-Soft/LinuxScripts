@@ -2,6 +2,7 @@
 #--------------------------------------------------------------------
 # Script to restore cluster PostgreSQL on point in time. Linux Ubuntu (22.04)
 #
+# RGS
 # Developed by Aleskandr Seryakov 01.04.2024
 #--------------------------------------------------------------------
 
@@ -15,7 +16,7 @@ else
     echo " Ошибка!"
     echo "Parameter PATH_PG_DATA must be filled correct!"
   else
-    echo " Корректно!"
+    echo "Корректно!"
 
     PORT=$1 
     PG_SETUP_NAME=$2
@@ -23,16 +24,18 @@ else
     PATH_TO_FILE_BASEBACKUP=$4
     PATH_TO_FILES_BACKUP_WAL=$5
     ARCHIVE_MODE=$6
-    #RECOVERY_TARGET=$7
+    RECOVERY_TARGET=$7
+
+    path_pg_bin=/opt/pgpro/std-15/bin
 
     echo -n "Останавливаем сервис ... "
-    /opt/pgpro/std-15/bin/$PG_SETUP_NAME service stop
+    $path_pg_bin/$PG_SETUP_NAME service stop
     echo "Выполнено!"
 
     sleep 5
 
     echo -n "Удаляем файлы мз каталога кластера ... "
-    if (( ${#PATH_PG_DATA} < 5 )); then
+    if (( ${#PATH_PG_DATA} < 2 )); then
       echo "Ошибка!"
       echo "Слишком короткий путь, проверьте параметр \"PATH_PG_DATA\" ${PATH_PG_DATA}"
       exit 100
@@ -49,24 +52,24 @@ else
     echo "recovery_target_action = 'promote'" >>$PATH_PG_DATA/postgresql.auto.conf
     echo "restore_command = 'cp $PATH_TO_FILES_BACKUP_WAL/%f %p'" >>$PATH_PG_DATA/postgresql.auto.conf
 
-    #if [ $# = 7 ]; then
-    # echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf
-    #else
-    # echo "recovery_target = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
-    #fi;
-
-    echo "recovery_target_time = '2024-04-24 16:00:00.000'" >>$PATH_PG_DATA/postgresql.auto.conf
+    #echo "recovery_target_time = '2024-04-24 16:00:00.000'" >>$PATH_PG_DATA/postgresql.auto.conf
     #echo "recovery_target_time = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
+
+    if [ $# = 7 ]; then
+     echo "recovery_target_time = '$RECOVERY_TARGET'" >>$PATH_PG_DATA/postgresql.auto.conf
+    else
+     echo "recovery_target = 'immediate'" >>$PATH_PG_DATA/postgresql.auto.conf
+    fi
 
     touch $PATH_PG_DATA/recovery.signal
     chmod 600 $PATH_PG_DATA/recovery.signal
     chown postgres:postgres $PATH_PG_DATA/recovery.signal
 
-    /opt/pgpro/std-15/bin/$PG_SETUP_NAME service condrestart
+    $path_pg_bin/$PG_SETUP_NAME service condrestart
 
     sleep 5
 
-    /opt/pgpro/std-15/bin/$PG_SETUP_NAME service status
+    $path_pg_bin/$PG_SETUP_NAME service status
 
   fi;
 

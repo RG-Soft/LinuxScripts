@@ -2,15 +2,15 @@
 #
 # RGS Модуль восстановления базы из бэкапа pg_dump в базу
 #
-#Пример запуска стартера:            ./rest_backup_dbase_name.sh
-#Пример запуска исполняемого модуля: ./rest_backup_dbase.sh srv01 5432 dbsaler1 postgres 3 /pgbackup/dbsaler1_now"
+# Пример запуска стартера:            ./rest_backup_dbase_name.sh
+# Пример запуска исполняемого модуля: ./rest_backup_dbase.sh srv01 5432 dbsaler1 postgres 3 /pgbackup/dbsaler1_now
 
 USAGE_STRING="Использовать: $0 hosthame port dbname username jobs backup_dir
 Пример: $0 srv01 5432 dbsaler1 postgres 3 /pgbackup"
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
-    exit 1
+    exit 100
 fi
 
 srvname=$1

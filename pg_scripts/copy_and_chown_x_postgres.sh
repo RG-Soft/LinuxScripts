@@ -42,3 +42,9 @@ do
     chown postgres:postgres "$copy_file"
     chmod +x "$copy_file"
 done
+
+# уберем исполнение для бэкапов
+for file_bak in $( find "$home_pgscripts" -maxdepth 2 -type f -name '*.bak' | sort )
+do
+    chmod -x "$file_bak"
+done

@@ -1,0 +1,16 @@
+#
+# RG-Soft
+#
+# Тайм юнит копирования basebaсkup и wal в облако (сервер длительного хранения) для регламента обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Basebackup and wal copy to cloud weekly maintenance schedule service for databases
+Requires=pg_basebackup_wal_copy.service
+
+[Timer]
+Unit=pg_basebackup_wal_copy.service
+OnCalendar=Sun *-*-* 06:00:00
+
+[Install]
+WantedBy=timers.target

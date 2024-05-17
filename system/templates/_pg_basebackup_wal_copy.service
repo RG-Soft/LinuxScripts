@@ -1,0 +1,18 @@
+#
+# RG-Soft
+#
+# Сервис юнит копирования basebakup и wal в облако (сервер длительного хранения) для регламента обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Basebackup and wal copy to cloud weekly maintenance schedule service for databases
+Wants=pg_basebackup_wal_copy.timer
+
+[Service]
+Type=oneshot
+User=postgres
+ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_claster_slberm.sh
+ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_claster_5432.sh
+
+[Install]
+WantedBy=multi-user.target

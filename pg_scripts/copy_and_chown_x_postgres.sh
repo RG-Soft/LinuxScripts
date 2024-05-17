@@ -4,6 +4,8 @@
 #
 # Пример запуска модуля: ./copy_and_chown_x_postgres.sh
 
+#shopt -s nullglob # Для простой выборки файлов в случае пустого списка (пустой каталог)
+
 home_pg=~postgres
 home_pgscripts="${home_pg}"/pg_scripts
 dev_pgscripts="$(dirname ${BASH_SOURCE[0]})"
@@ -23,7 +25,6 @@ else
     echo "Существует!"
 fi
 
-#shopt -s nullglob
 #for file_sh in $(dirname ${BASH_SOURCE[0]})/*.sh
 for file_sh in $( find "$dev_pgscripts" -maxdepth 1 -type f -name '*.sh' | sort )
 do
@@ -33,7 +34,6 @@ do
     chmod +x "$copy_file"
 done
 
-#shopt -s nullglob
 #for file_sh in $(dirname ${BASH_SOURCE[0]})/main/*.sh
 for file_sh in $( find "$dev_pgscripts"/main -maxdepth 1 -type f -name '*.sh' | sort )
 do

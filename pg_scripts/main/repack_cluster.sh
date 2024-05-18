@@ -126,8 +126,10 @@ bloat_data AS (
 )
 SELECT tablename
 FROM bloat_data
-WHERE ( pct_bloat >= 50 AND mb_bloat >= 10 )
-    OR ( pct_bloat >= 25 AND mb_bloat >= 1000 )
+WHERE ( pct_bloat >= 50 AND mb_bloat >= 10 ) --original
+    OR ( pct_bloat >= 25 AND mb_bloat >= 100 ) --addon
+    OR ( pct_bloat >= 10 AND mb_bloat >= 1000 ) --addon
+    OR ( pct_bloat >= 5 AND mb_bloat >= 5000 ) --addon
 ORDER BY mb_bloat DESC"
 
 select_indexes="WITH btree_index_atts AS (
@@ -222,7 +224,10 @@ FROM raw_bloat
 )
 SELECT index_name
 FROM format_bloat
-WHERE ( bloat_pct > 50 and bloat_mb > 10 )
+WHERE ( bloat_pct >= 50 AND bloat_mb >= 10 ) --original
+    OR ( bloat_pct >= 25 AND bloat_mb >= 100 ) --addon
+    OR ( bloat_pct >= 10 AND bloat_mb >= 1000 ) --addon
+    OR ( bloat_pct >= 5 AND bloat_mb >= 5000 ) --addon
 ORDER BY bloat_pct DESC"
 
 echo "--==Start  cluster $port repack==--"

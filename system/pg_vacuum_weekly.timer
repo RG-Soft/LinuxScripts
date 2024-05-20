@@ -8,7 +8,7 @@ Requires=pg_vacuum_weekly.service
 
 [Timer]
 Unit=pg_vacuum_weekly.service
-OnCalendar=Sun *-*-* 01:00:00
+OnCalendar=Sun *-*-* 00:01:00
 
 [Install]
 WantedBy=timers.target

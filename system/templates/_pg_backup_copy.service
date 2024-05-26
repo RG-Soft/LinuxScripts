@@ -9,7 +9,7 @@ Wants=_pg_backup_copy.timer
 
 [Service]
 Type=oneshot
-ExecStart=/var/lib/postgresql/pg_scripts/backup_copy_dbase_dbsaler1.sh
+ExecStart=/var/lib/postgresql/pg_scripts/backup_copy_dir_dbsaler1.sh
 
 
 [Install]

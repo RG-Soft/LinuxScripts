@@ -21,12 +21,48 @@ basebackup_cloud_dir=$4
 basebackup_current_dir=""
 #pgbasebackup_cloud_current_dir=/mnt/ru0222nas02_YANDEX/ru0994app40/SQLBackup/$clustername/???
 
+IFS=""
+echo -n "Необходимо проверить сбой прошлого копирования и докопировать в облако ... "
+if cd "$basebackup_dir" ; then
+	mapfile -t dirlist < <( find . -maxdepth 1 -mindepth 1 -regex "${clustername}_*" -type d -printf '%f\n' | sort )
+	echo 
+	echo ${filelist[@]}
+	for $basebackup_current_dir in ${dirlist[@]}; do
+
+		cd "$basebackup_current_dir"
+
+		mapfile -t filelist < <( find . -maxdepth 1 -mindepth 1 -regex ".*/[0-9A-F]+\.[0-9A-F]+\.backup" -type f -printf '%f\n' | sort )
+		echo 
+		echo ${filelist[@]}
+		for file in ${filelist[@]}; do
+			echo "Найден подготовленный каталог!"
+			echo "Кабалог basebackup: ${basebackup_current_dir} содержит файлы WAL. Файл с меткой $(basename ${file})"
+			cat ${file}
+			echo -n "Перемещаем файлы  basebackup+wall в облако ${basebackup_cloud_dir}... "
+			if mv "$basebackup_current_dir" "$basebackup_cloud_dir"
+			then
+				echo "Выполнено!"
+				exit
+			else
+				echo "ОШИБКА!!!"
+				echo "Ошибка при перемещении файлов! Необходима проверка"
+				exit 100
+			fi
+		done
+	done
+else
+	echo "Ошибка!!!" 
+	echo "Не удалось перейти в каталог basebackup: ${basebackup_dir}. Прервано копирование в облако!"
+	echo
+	exit 100 
+fi
+
+basebackup_current_dir=""
 current_name=""
 finish_name=""
 for_index=0
 
 cd "$walbackup_dir"
-IFS=""
 mapfile -t filelist < <( find . -maxdepth 1 -mindepth 1 -regex ".*/[0-9A-F]+\.[0-9A-F]+\.backup" -type f -printf '%f\n' | sort )
 echo 
 echo ${filelist[@]}
@@ -51,13 +87,13 @@ for file in ${filelist[@]}; do
 			current_name=${file%%.*}
 			current_ext=${file##*.}
 			if [ "$current_ext" == "backup" ] ; then
-			basebackup_current_dir="$basebackup_dir${clustername}_$(date -r $file +'%Y%m%d')"
-			if [ -d "$basebackup_current_dir" ] ; then
-				echo "Определен каталог basebackup $basebackup_current_dir"
-			else
-				echo "ОШИБКА определения каталога. Каталог basebackup ${basebackup_current_dir} не найден!"
-				exit 100
-			fi
+				basebackup_current_dir="$basebackup_dir${clustername}_$(date -r $file +'%Y%m%d')"
+				if [ -d "$basebackup_current_dir" ] ; then
+					echo "Определен каталог basebackup $basebackup_current_dir"
+				else
+					echo "ОШИБКА определения каталога. Каталог basebackup ${basebackup_current_dir} не найден!"
+					exit 100
+				fi
 			fi
 		else
 			echo "Второй проход с basebackup $file"

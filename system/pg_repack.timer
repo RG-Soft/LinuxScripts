@@ -10,7 +10,7 @@ Requires=pg_repack.service
 
 [Timer]
 Unit=pg_repack.service
-OnCalendar=Mon..Sat *-*-* 00:01:00
+OnCalendar=Mon..Sat *-*-* 00:30:00
 
 [Install]
 WantedBy=timers.target

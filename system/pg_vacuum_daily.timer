@@ -10,7 +10,7 @@ Requires=pg_vacuum_daily.service
 
 [Timer]
 Unit=pg_vacuum_daily.service
-OnCalendar=Mon..Fri *-*-* 02:00:00
+OnCalendar=Mon..Fri *-*-* 00:01:00
 
 [Install]
 WantedBy=timers.target

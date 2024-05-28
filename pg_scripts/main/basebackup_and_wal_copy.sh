@@ -43,9 +43,9 @@ if cd "$basebackup_dir" ; then
 				if rm -R "$basebackup_cloud_dir"/"$basebackup_current_dir" ; then
 					echo "Выполнено!"
 				else
-				echo "ОШИБКА!!!"
-				echo "Ошибка при очистке каталога в облаке файлов! Необходима проверка"
-				exit 100
+					echo "ОШИБКА!!!"
+					echo "Ошибка при очистке каталога в облаке файлов! Необходима проверка"
+					exit 100
 				fi
 			fi
 

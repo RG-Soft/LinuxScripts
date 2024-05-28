@@ -60,7 +60,7 @@ if cd "$basebackup_dir" ; then
 				exit 100
 			fi
 		done
-		# Проверяем тольео первый по списку каталог
+		# Проверяем только первый по списку каталог
 		break
 	done
 else

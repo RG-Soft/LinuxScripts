@@ -29,17 +29,17 @@ else
 fi
 
 if [ ! -d "$copydir" ]; then
-    echo -n "Каталог целевой ${copydir} не найден, создаем ... "
+    echo -n "Каталог целевой ${copydir} не найден ... "
     if mkdir -p "$copydir" ; then
-        echo "Создан целевой каталог копирования '$copydir/'"
+        echo "Создан!"
+        echo "Целевой каталог копирования: '$copydir/'"
     else
-        echo "Ошибка при создании каталога '$$copydir/'"
+        echo "Ошибка!!!"
+        echo "Целевой каталог '$$copydir/' не создан"
         exit 100
     fi
-
-    echo "Выполнено!"
 else
-    echo "Каталог целевой  ${copydir} существует."
+    echo "Целевой каталог ${copydir} существует."
     echo -n "Запускаем зачистку перед копированием ... "
     rm -f "$copydir"/*
     echo "Выполнено!"

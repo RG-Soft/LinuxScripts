@@ -24,20 +24,31 @@ basebackup_current_dir=""
 IFS=""
 echo -n "Необходимо проверить сбой прошлого копирования и докопировать в облако ... "
 if cd "$basebackup_dir" ; then
-	mapfile -t dirlist < <( find . -maxdepth 1 -mindepth 1 -regex "${clustername}_*" -type d -printf '%f\n' | sort )
+	mapfile -t dirlist < <( find . -maxdepth 1 -mindepth 1 -name "${clustername}_*" -type d -printf '%f\n' | sort )
 	echo 
-	echo ${filelist[@]}
-	for $basebackup_current_dir in ${dirlist[@]}; do
+	echo "Директории в обработке: "${dirlist[@]}
+	for basebackup_current_dir in ${dirlist[@]}; do
 
-		cd "$basebackup_current_dir"
-
-		mapfile -t filelist < <( find . -maxdepth 1 -mindepth 1 -regex ".*/[0-9A-F]+\.[0-9A-F]+\.backup" -type f -printf '%f\n' | sort )
+		mapfile -t filelist < <( find "$basebackup_current_dir" -maxdepth 1 -mindepth 1 -regex ".*/[0-9A-F]+\.[0-9A-F]+\.backup" -type f -printf '%f\n' | sort )
 		echo 
-		echo ${filelist[@]}
+		echo "Файлы с метками basebackup: "${filelist[@]}
 		for file in ${filelist[@]}; do
 			echo "Найден подготовленный каталог!"
-			echo "Кабалог basebackup: ${basebackup_current_dir} содержит файлы WAL. Файл с меткой $(basename ${file})"
-			cat ${file}
+			echo "Каталог basebackup: ${basebackup_current_dir} содержит файлы WAL. Файл с меткой $(basename ${file})"
+			cat "${basebackup_current_dir}/${file}"
+			echo -n "Проверяем каталог basebackup+wall в облаке ${basebackup_cloud_dir}... "
+			if [ -d "$basebackup_cloud_dir"/"$basebackup_current_dir" ] ; then
+				echo "Существует каталог в облаке!"
+				echo -n "Удаляем файлы ... "
+				if rm -R "$basebackup_cloud_dir"/"$basebackup_current_dir" ; then
+					echo "Выполнено!"
+				else
+				echo "ОШИБКА!!!"
+				echo "Ошибка при очистке каталога в облаке файлов! Необходима проверка"
+				exit 100
+				fi
+			fi
+
 			echo -n "Перемещаем файлы  basebackup+wall в облако ${basebackup_cloud_dir}... "
 			if mv "$basebackup_current_dir" "$basebackup_cloud_dir"
 			then
@@ -49,6 +60,8 @@ if cd "$basebackup_dir" ; then
 				exit 100
 			fi
 		done
+		# Проверяем тольео первый по списку каталог
+		break
 	done
 else
 	echo "Ошибка!!!" 

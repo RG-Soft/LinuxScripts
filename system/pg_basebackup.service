@@ -11,7 +11,7 @@ Wants=pg_basebackup.timer
 [Service]
 Type=oneshot
 User=postgres
-#ExecStart=/var/lib/postgresql/pg_scripts/basebackup_cluster_pawcmfr.sh
+ExecStart=/var/lib/postgresql/pg_scripts/basebackup_cluster_pawcmfr.sh
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_cluster_slberm.sh
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_cluster_slbsvs_acc.sh
 

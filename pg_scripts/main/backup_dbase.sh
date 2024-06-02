@@ -24,6 +24,11 @@ jobs=$5
 backupdir_root=$6
 backup_suffix=$7
 
+# Добавим параметр verbose для контроля
+#verbose="--verbose"
+verbose=""
+
+
 if [ ! -d "$backupdir_root" ]; then
     echo "Отсутствует корневой каталог бэкапов! Создайте и настройте корневой каталог ${backupdir_root}..."
     exit 100
@@ -59,7 +64,7 @@ fi
 exit_code=0
 
 echo "--==Start  $dbname backup==--"
-if pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 --verbose --file $backupdir_inprogress $dbname ; then
+if pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 $verbose --file $backupdir_inprogress $dbname ; then
     echo "Бэкап выполнен"
     if mv "$backupdir_inprogress" "$backupdir" ; then
         echo "Временный каталог переименован в ${$backupdir}"

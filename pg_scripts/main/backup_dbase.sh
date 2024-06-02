@@ -24,7 +24,7 @@ jobs=$5
 backupdir_root=$6
 backup_suffix=$7
 
-# Добавим параметр verbose для контроля
+# Добавим опциональный параметр verbose для контроля
 #verbose="--verbose"
 verbose=""
 

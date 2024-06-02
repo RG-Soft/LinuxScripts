@@ -45,7 +45,14 @@ else
     echo "Выполнено!"
 fi
 
+exit_code=0
+
 echo -n "Запускаем копирование в ${copydir} ... "
-cp "$backupdir"/* "$copydir"/
-echo "Выполнено!"
+if cp "$backupdir"/* "$copydir"/ ; then
+    echo "Выполнено!"
+else
+    echo "ОШИБКА!!! не выполнено."
+    exit_code=100
+fi
 echo "--~== Завершено копирование бэкапа базы ${dbname} ==~--"
+exit $exit_code

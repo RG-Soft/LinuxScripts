@@ -68,7 +68,7 @@ exit_code=0
 if pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 $verbose --file $backupdir_inprogress $dbname ; then
     echo "Бэкап выполнен. ОК!"
     if mv "$backupdir_inprogress" "$backupdir" ; then
-        echo "Временный каталог переименован в ${$backupdir}"
+        echo "Временный каталог переименован в ${backupdir}"
     else
         echo "ОШИБКА!!! Временный каталог не переименован"
         exit_code=100

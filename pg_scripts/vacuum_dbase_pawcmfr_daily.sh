@@ -7,8 +7,7 @@
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов
-#dbname=PAWCMFR
-dbname=PAWCMFR # Временная база
+dbname=PAWCMFR
 srvname=localhost
 port=5432
 username=postgres

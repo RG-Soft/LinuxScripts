@@ -190,7 +190,6 @@ then
 		echo "Ошибка при очистке каталога \"${basebackup_current_dir}\"! Необходима проверка"
 		exit 100
 	fi
-fi
 	echo "Выполнено!"
 else
 	echo "ОШИБКА!!!"

@@ -22,6 +22,9 @@ clustername=$4
 backupdir_root=$5
 backupdir_rewrite=$6
 
+#verbose="--verbose"
+verbose=""
+
 backupdir=$backupdir_root/$clustername/basebackup/${clustername}_$(date +'%Y%m%d')
 backupdir_inprogress=$backupdir.backuping
 
@@ -50,7 +53,7 @@ else
 fi
 
 echo "--==Start  cluster $clustername pg_basebackup==--"
-pg_basebackup --host $srvname --port $port --username $username --no-password --wal-method=none --format=tar --gzip --checkpoint=fast --progress --verbose --pgdata $backupdir_inprogress
+pg_basebackup --host $srvname --port $port --username $username --no-password --wal-method=none --format=tar --gzip --checkpoint=fast --progress $verbose --pgdata $backupdir_inprogress
 echo "--==Finish cluster $clustername pg_basebackup==--"
 
 mv $backupdir_inprogress $backupdir

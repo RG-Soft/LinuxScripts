@@ -10,7 +10,3 @@ Wants=pg_backup_copy.timer
 [Service]
 Type=oneshot
 ExecStart=/var/lib/postgresql/pg_scripts/backup_copy_dir_zakupki.sh
-
-
-[Install]
-WantedBy=multi-user.target

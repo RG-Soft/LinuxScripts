@@ -32,10 +32,10 @@ if [ ! -d "$copydir" ]; then
     echo -n "Каталог целевой ${copydir} не найден ... "
     if mkdir -p "$copydir" ; then
         echo "Создан!"
-        echo "Целевой каталог копирования: '$copydir/'"
+        echo "Целевой каталог копирования: '${copydir}/'"
     else
         echo "Ошибка!!!"
-        echo "Целевой каталог '$$copydir/' не создан"
+        echo "Целевой каталог '${copydir}/' не создан"
         exit 100
     fi
 else

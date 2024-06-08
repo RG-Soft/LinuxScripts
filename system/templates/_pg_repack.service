@@ -13,6 +13,3 @@ Type=oneshot
 User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_dbsaler1.sh
 ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_dbsaler1.sh
-
-[Install]
-WantedBy=multi-user.target

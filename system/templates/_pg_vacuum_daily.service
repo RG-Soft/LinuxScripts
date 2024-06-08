@@ -13,6 +13,3 @@ Type=oneshot
 User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_cluster_5432_daily.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_dbsaler1_daily.sh
-
-[Install]
-WantedBy=multi-user.target

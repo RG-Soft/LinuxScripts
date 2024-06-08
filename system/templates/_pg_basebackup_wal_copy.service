@@ -12,6 +12,3 @@ Wants=pg_basebackup_wal_copy.timer
 Type=oneshot
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_claster_slberm.sh
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_claster_5432.sh
-
-[Install]
-WantedBy=multi-user.target

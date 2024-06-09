@@ -24,8 +24,14 @@ jobs=$5
 backupdir_root=$6
 backup_suffix=$7
 
+# Добавим опциональный параметр verbose для контроля
+#verbose="--verbose"
+verbose=""
+
+echo "--==Start  $dbname backup==--"
+echo "Выполняется проверка готовности к запуску..."
 if [ ! -d "$backupdir_root" ]; then
-    echo "Отсутствует корневой каталог бэкапов! Создайте и настройте корневой каталог $backupdir_root..."
+    echo "Отсутствует корневой каталог бэкапов! Создайте и настройте корневой каталог ${backupdir_root}..."
     exit 100
 fi
 
@@ -33,19 +39,43 @@ backupdir=${backupdir_root}/${dbname}/${dbname}${backup_suffix}
 backupdir_inprogress=${backupdir}.backuping
 
 if [ -d "$backupdir_inprogress" ]; then
-    echo "Бэкап уже выполняется! Если был прерван - удалите каталог $backupdir_inprogress вручную"
-    exit 101
+    echo "Бэкап уже выполняется! Если был прерван - удалите каталог ${backupdir_inprogress} вручную"
+    exit 100
 fi
 
 if [ ! -d "$backupdir" ]; then
-    mkdir -p $backupdir_inprogress
+    echo -n "Каталог бэкапа отсутствует ... "
+    if ! mkdir -p $backupdir_inprogress ; then
+        echo "ОШИБКА!!! при создания временного каталога ${backupdir_inprogress}"
+        exit 100
+    else
+        echo "Создан для работы ${backupdir_inprogress}"
+    fi
 else
-    rm -f $backupdir/*
-    mv $backupdir $backupdir_inprogress
+    if ! rm -f "$backupdir"/* ; then
+        echo "ОШИБКА!!! не удалось удалить файлы старого бэкапа"
+        exit 100
+    fi
+    if ! mv "$backupdir" "$backupdir_inprogress" ; then
+        echo "ОШИБКА!!! не удалось переименовать каталог бэкапа во временный ${backupdir_inprogress}"
+        exit 100
+    fi
 fi
+echo "Проверка выполнена. ОК!"
 
-echo "--==Start  $dbname backup==--"
-pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 --verbose --file $backupdir_inprogress $dbname
+exit_code=0
+
+if pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 $verbose --file $backupdir_inprogress $dbname ; then
+    echo "Бэкап выполнен. ОК!"
+    if mv "$backupdir_inprogress" "$backupdir" ; then
+        echo "Временный каталог переименован в ${backupdir}"
+    else
+        echo "ОШИБКА!!! Временный каталог не переименован"
+        exit_code=100
+    fi
+else
+    echo "ОШИБКА!!! Бэкап не выполнен."
+    exit_code=100
+fi
 echo "--==Finish $dbname backup==--"
-
-mv $backupdir_inprogress $backupdir
+exit $exit_code

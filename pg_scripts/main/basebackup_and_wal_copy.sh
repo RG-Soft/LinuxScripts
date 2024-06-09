@@ -36,9 +36,9 @@ if cd "$basebackup_dir" ; then
 			echo "Найден подготовленный каталог!"
 			echo "Каталог basebackup: ${basebackup_current_dir} содержит файлы WAL. Файл с меткой $(basename ${file})"
 			cat "${basebackup_current_dir}/${file}"
-			echo -n "Проверяем каталог basebackup+wall в облаке ${basebackup_cloud_dir}... "
-			if [ -d "$basebackup_cloud_dir"/"$basebackup_current_dir" ] ; then
-				echo "Существует каталог в облаке!"
+			echo -n "Проверяем архив basebackup+wall в облаке ${basebackup_cloud_dir}... "
+			if [ -f "$basebackup_cloud_dir"/"$basebackup_current_dir" ] ; then
+				echo "Существует архив в облаке!"
 				echo -n "Удаляем файлы ... "
 				if rm -R "$basebackup_cloud_dir"/"$basebackup_current_dir" ; then
 					echo "Выполнено!"
@@ -50,10 +50,18 @@ if cd "$basebackup_dir" ; then
 			fi
 
 			echo -n "Перемещаем файлы  basebackup+wall в облако ${basebackup_cloud_dir}... "
-			if mv "$basebackup_current_dir" "$basebackup_cloud_dir"
+			#if mv "$basebackup_current_dir" "$basebackup_cloud_dir"
+			if tar -zcvf "$basebackup_cloud_dir"/"$basebackup_current_dir"".tar.gz" "$basebackup_current_dir"
 			then
+				if ! rm -R "$basebackup_current_dir" ; then
+					echo "ОШИБКА!!!"
+					echo "Ошибка при очистке каталога \"${basebackup_current_dir}\"! Необходима проверка"
+					exit 100
+				fi
+				
 				echo "Выполнено!"
 				exit
+				
 			else
 				echo "ОШИБКА!!!"
 				echo "Ошибка при перемещении файлов! Необходима проверка"
@@ -156,8 +164,32 @@ for current_file in ${walbackup_dir}* ; do
 done
 
 echo -n "Перемещаем файлы  basebackup+wall в облако ${basebackup_cloud_dir}... "
-if mv "$basebackup_current_dir" "$basebackup_cloud_dir"
+dest_dirname=$(basename ${basebackup_current_dir})
+#echo "dest_dirname= ${dest_dirname}"
+#exit
+
+echo -n "Проверяем архив basebackup+wall в облаке ${basebackup_cloud_dir}... "
+if [ -f "$basebackup_cloud_dir"/"$dest_dirname" ] ; then
+	echo "Существует архив в облаке!"
+	echo -n "Удаляем файлы ... "
+	if rm -R "$basebackup_cloud_dir"/"$dest_dirname" ; then
+		echo "Выполнено!"
+	else
+		echo "ОШИБКА!!!"
+		echo "Ошибка при очистке каталога в облаке файлов! Необходима проверка"
+		exit 100
+	fi
+fi
+
+
+#if mv "$basebackup_current_dir" "$basebackup_cloud_dir"
+if tar -zcvf "$basebackup_cloud_dir"/"$dest_dirname"".tar.gz" "$basebackup_current_dir"
 then
+	if ! rm -R "$basebackup_current_dir" ; then
+		echo "ОШИБКА!!!"
+		echo "Ошибка при очистке каталога \"${basebackup_current_dir}\"! Необходима проверка"
+		exit 100
+	fi
 	echo "Выполнено!"
 else
 	echo "ОШИБКА!!!"

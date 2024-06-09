@@ -14,7 +14,7 @@ username=postgres
 jobs=3
 backupdir_root=/mnt/pgbackup
 #backup_suffix=_now # История бэкапов не ведется, бэкап используется для перезаливки баз разработчиков
-backup_suffix=$(date +'%Y%m%d_%H%M%S') # История бэкапов ведется, бэкап сохраняется в каталог с меткой времени
+backup_suffix="_"$(date +'%Y%m%d_%H%M%S') # История бэкапов ведется, бэкап сохраняется в каталог с меткой времени
 # ///////////////////////////////////////////////////////////////
 
 $(dirname ${BASH_SOURCE[0]})/main/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root $backup_suffix

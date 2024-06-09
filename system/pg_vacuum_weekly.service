@@ -11,6 +11,3 @@ Type=oneshot
 User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_Spectr_BP_weekly.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_Spectr_Zup_weekly.sh
-
-[Install]
-WantedBy=multi-user.target

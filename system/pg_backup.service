@@ -13,6 +13,3 @@ Type=oneshot
 User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/backup_Spectr_BP.sh
 ExecStart=/var/lib/postgresql/pg_scripts/backup_Spectr_Zup.sh
-
-[Install]
-WantedBy=multi-user.target

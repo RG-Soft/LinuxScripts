@@ -15,6 +15,3 @@ ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_1chelper_weekly.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_slbbilling_weekly.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_toezgp_weekly.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_tpm_wo_weekly.sh
-
-[Install]
-WantedBy=multi-user.target

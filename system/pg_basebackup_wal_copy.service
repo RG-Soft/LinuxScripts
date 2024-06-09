@@ -15,5 +15,3 @@ ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_cluster_slbbill
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_cluster_toezgp.sh
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_cluster_tpm_wo.sh
 
-[Install]
-WantedBy=multi-user.target

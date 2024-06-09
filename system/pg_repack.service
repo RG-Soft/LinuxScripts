@@ -15,6 +15,3 @@ ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_1chelper.sh
 ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_slbbilling.sh
 ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_toezgp.sh
 ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_tpm_wo.sh
-
-[Install]
-WantedBy=multi-user.target

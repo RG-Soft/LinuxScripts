@@ -65,6 +65,7 @@ echo "Проверка выполнена. ОК!"
 
 exit_code=0
 
+echo "Запущено формирование бэкапа pg_dump для \"$dbname\" ... "
 if pg_dump --host $srvname --port $port --username $username --no-password --format directory --jobs $jobs --blobs --encoding UTF8 $verbose --file $backupdir_inprogress $dbname ; then
     echo "Бэкап выполнен. ОК!"
     if mv "$backupdir_inprogress" "$backupdir" ; then

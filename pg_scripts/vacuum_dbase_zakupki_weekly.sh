@@ -15,4 +15,4 @@ jobs=3
 freeze=FREEZE
 # ///////////////////////////////////////////////////////////////
 
-$(dirname ${BASH_SOURCE[0]})/main/vacuumdb_dbase.sh $srvname $port $dbname $username $jobs $freeze
+$(dirname ${BASH_SOURCE[0]})/main/vacuum_dbase.sh $srvname $port $dbname $username $jobs $freeze

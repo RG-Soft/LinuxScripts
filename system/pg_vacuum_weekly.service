@@ -12,4 +12,4 @@ Wants=pg_vacuum_weekly.timer
 Type=oneshot
 User=postgres
 #ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_weekly_dbsaler1.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_dbase_zakupki_weekly.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_zakupki_weekly.sh

@@ -14,6 +14,3 @@ User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_pawcmfr_daily.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_slberm_daily.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_slbsvs_acc_daily.sh
-
-[Install]
-WantedBy=multi-user.target

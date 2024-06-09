@@ -13,6 +13,3 @@ Type=oneshot
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_cluster_pawcmfr.sh
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_cluster_slberm.sh
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_cluster_slbsvs_acc.sh
-
-[Install]
-WantedBy=multi-user.target

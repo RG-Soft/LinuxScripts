@@ -14,6 +14,3 @@ User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/backup_dbase_pawcmfr.sh
 ExecStart=/var/lib/postgresql/pg_scripts/backup_dbase_slberm.sh
 ExecStart=/var/lib/postgresql/pg_scripts/backup_dbase_slbsvs_acc.sh
-
-[Install]
-WantedBy=multi-user.target

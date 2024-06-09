@@ -13,6 +13,3 @@ Type=oneshot
 User=postgres
 #ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_dbsaler1.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_dbase_zakupki_daily.sh
-
-[Install]
-WantedBy=multi-user.target

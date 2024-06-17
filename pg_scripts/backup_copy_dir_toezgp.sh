@@ -8,7 +8,7 @@
 # Пользовательские параметры адаптируеются под настройки серверов
 dbname=TOEZGP
 backupdir=/pgbackup/$dbname/${dbname}_now
-copydir=/mnt/ru0222nas02_YANDEX/ru0994app40/SQLBackup/${dbname}/${dbname}_now #$(date +'%Y%m%d')
+copydir=/mnt/ru0222nas02_YANDEX/ru0222app53/SQLBackup/${dbname}/${dbname}_now #$(date +'%Y%m%d')
 #\\ru0222nas02.dir.slb.com\YANDEX_RU_ES_LEGACY\EAR-AA-1315\SQLBACKUP\ru0994app40\SQLBackup\TOEZGP\TOEZGP_now
 # ///////////////////////////////////////////////////////////////
 

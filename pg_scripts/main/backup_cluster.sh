@@ -35,13 +35,13 @@ for dbname in $dblist ; do
 
     # Игнорируем служебные или исключенные базы данных
     if echo "$skip_dblist" | grep -qw "$dbname"; then
-		echo "Системная или исключенная из обработки база \"$dbname\" пропускается..."
-		continue
+		  echo "Системная или исключенная из обработки база \"$dbname\" пропускается..."
+		  continue
     fi
 
     echo "Обрабатывается база \"$dbname\""
 
-    $(dirname ${BASH_SOURCE[0]})/main/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root $backup_suffix
+    $(dirname ${BASH_SOURCE[0]})/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root $backup_suffix
 
 done
 

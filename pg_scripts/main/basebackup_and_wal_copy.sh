@@ -117,14 +117,22 @@ for file in ${filelist[@]}; do
 				fi
 			fi
 		else
-			echo "Второй проход с basebackup $file"
+			echo "Второй проход с basebackup ${file}"
 			finish_name=${file%%.*}
+			echo "СТОП Имя файла бэкапа следующего цикла ${finish_name}"
 			break
 		fi
     fi
     let "for_index++"
 
 done
+
+if [ -z "$finish_name" ]; then
+	echo
+	echo "ОШИБКА! Не предусмотрена архивация единственного basebackup + wal архивов."
+	echo "ОШИБКА! Необходимо сделать basebackup и после завершения повторить текущую операцию."
+	exit 100
+fi
 
 let "for_index=0"
 

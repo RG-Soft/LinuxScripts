@@ -256,7 +256,7 @@ for dbname in $dblist ; do
         echo "	Таблица в обработке \"$table_name\""
         # repack - очень большие объемы WAL
         # pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --table=$table_name
-        vacuumdb --host $srvname --port $port --username $username --no-password --jobs $jobs --analize --full $dbname --table=$table_name
+        vacuumdb --host $srvname --port $port --username $username --no-password --jobs $jobs --analize --full --freeze $dbname --table=$table_name --force-index-cleanup
     done
 
     # Получаем список объектов к обработке индексов

@@ -253,8 +253,10 @@ for dbname in $dblist ; do
     table_list=`psql --dbname=$dbname --host=$srvname --port=$port --username=$username --command="copy ($select_tables) to stdout"`
 
     for table_name in $table_list ; do
-	echo "	Таблица в обработке \"$table_name\""
-	pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --table=$table_name
+        echo "	Таблица в обработке \"$table_name\""
+        # repack - очень большие объемы WAL
+        # pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --table=$table_name
+        vacuumdb --host $srvname --port $port --username $username --no-password --jobs $jobs --analize --full $dbname --table=$table_name
     done
 
     # Получаем список объектов к обработке индексов
@@ -263,8 +265,8 @@ for dbname in $dblist ; do
     index_list=`psql --dbname=$dbname --host=$srvname --port=$port --username=$username --command="copy ($select_indexes) to stdout"`
 
     for index_name in $index_list ; do
-	echo "	Индекс в обработке \"$index_name\""
-	pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --index=$index_name
+        echo "	Индекс в обработке \"$index_name\""
+        pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --index=$index_name
     done
 done
 

@@ -40,6 +40,7 @@ fi
 echo -n "Проверка, что сегодня выполнялся ... "
 
 if [ ! -d "$backupdir" ]; then
+    echo "Бэкап не выполнялся!"
     mkdir -p $backupdir_inprogress
 else
     if [ "$backupdir_rewrite" == "YES" ]; then

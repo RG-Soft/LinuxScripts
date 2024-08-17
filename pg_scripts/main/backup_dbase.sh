@@ -10,7 +10,7 @@ example: ./backup_dbase.sh srv01 5432 db_saler postgres 3 /pgbackup 20240312_100
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
-    exit 1
+    exit
 fi
 
 #test param
@@ -32,7 +32,7 @@ echo "--==Start  $dbname backup==--"
 echo "Выполняется проверка готовности к запуску..."
 if [ ! -d "$backupdir_root" ]; then
     echo "Отсутствует корневой каталог бэкапов! Создайте и настройте корневой каталог ${backupdir_root}..."
-    exit 100
+    exit
 fi
 
 backupdir=${backupdir_root}/${dbname}/${dbname}${backup_suffix}
@@ -40,25 +40,25 @@ backupdir_inprogress=${backupdir}.backuping
 
 if [ -d "$backupdir_inprogress" ]; then
     echo "Бэкап уже выполняется! Если был прерван - удалите каталог ${backupdir_inprogress} вручную"
-    exit 100
+    exit
 fi
 
 if [ ! -d "$backupdir" ]; then
     echo -n "Каталог бэкапа отсутствует ... "
     if ! mkdir -p $backupdir_inprogress ; then
         echo "ОШИБКА!!! при создания временного каталога ${backupdir_inprogress}"
-        exit 100
+        exit
     else
         echo "Создан для работы ${backupdir_inprogress}"
     fi
 else
     if ! rm -f "$backupdir"/* ; then
         echo "ОШИБКА!!! не удалось удалить файлы старого бэкапа"
-        exit 100
+        exit
     fi
     if ! mv "$backupdir" "$backupdir_inprogress" ; then
         echo "ОШИБКА!!! не удалось переименовать каталог бэкапа во временный ${backupdir_inprogress}"
-        exit 100
+        exit
     fi
 fi
 echo "Проверка выполнена. ОК!"
@@ -79,4 +79,4 @@ else
     exit_code=100
 fi
 echo "--==Finish $dbname backup==--"
-exit $exit_code
+#exit $exit_code

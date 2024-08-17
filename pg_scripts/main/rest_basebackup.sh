@@ -38,7 +38,7 @@ else
     if (( ${#PATH_PG_DATA} < 2 )); then
       echo "Ошибка!"
       echo "Слишком короткий путь, проверьте параметр \"PATH_PG_DATA\" ${PATH_PG_DATA}"
-      exit 100
+      exit
     fi
 
     rm -rf $PATH_PG_DATA/*

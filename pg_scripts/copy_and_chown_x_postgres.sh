@@ -19,7 +19,7 @@ if [ ! -d "$home_pgscripts" ]; then
         echo "Создан каталог 'pg_scripts/main/'"
     else
         echo "Ошибка при создании каталога '$home_pgscripts/main'"
-        exit 1
+        exit
     fi
 else
     echo "Существует!"

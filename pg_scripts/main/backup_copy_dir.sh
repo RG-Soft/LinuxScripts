@@ -9,7 +9,7 @@ SAGE_STRING="Использовать: $0 dbname||clusterport source_root_dir de
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
-    exit 1
+    exit
 fi
 
 # ///////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ echo "--~== Запускаем копирование бэкапа базы ${db
 
 if [ ! -d "$backupdir" ]; then
     echo -n "Каталог бэкапирования ${backupdir} не найден, копирование прерываем ... "
-    exit 100
+    exit
 else
     echo "Каталог бэкапирования ${backupdir} существует."
 fi
@@ -36,7 +36,7 @@ if [ ! -d "$copydir" ]; then
     else
         echo "Ошибка!!!"
         echo "Целевой каталог '${copydir}/' не создан"
-        exit 100
+        exit
     fi
 else
     echo "Целевой каталог ${copydir} существует."
@@ -55,4 +55,5 @@ else
     exit_code=100
 fi
 echo "--~== Завершено копирование бэкапа базы ${dbname} ==~--"
-exit $exit_code
+# не нулевой код вовзрата прерывает цепочку запуска скриптов в сервис юните
+#exit $exit_code

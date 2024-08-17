@@ -10,7 +10,7 @@ USAGE_STRING="Использовать: $0 hosthame port username jobs
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
-    exit 1
+    exit
 fi
 
 srvname=$1
@@ -253,8 +253,10 @@ for dbname in $dblist ; do
     table_list=`psql --dbname=$dbname --host=$srvname --port=$port --username=$username --command="copy ($select_tables) to stdout"`
 
     for table_name in $table_list ; do
-	echo "	Таблица в обработке \"$table_name\""
-	pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --table=$table_name
+        echo "	Таблица в обработке \"$table_name\""
+        # repack - очень большие объемы WAL
+        # pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --table=$table_name
+        vacuumdb --host $srvname --port $port --username $username --no-password --jobs $jobs --analyze --full --freeze $dbname --table=$table_name --force-index-cleanup
     done
 
     # Получаем список объектов к обработке индексов
@@ -263,8 +265,8 @@ for dbname in $dblist ; do
     index_list=`psql --dbname=$dbname --host=$srvname --port=$port --username=$username --command="copy ($select_indexes) to stdout"`
 
     for index_name in $index_list ; do
-	echo "	Индекс в обработке \"$index_name\""
-	pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --index=$index_name
+        echo "	Индекс в обработке \"$index_name\""
+        pg_repack --host=$srvname --port=$port --username=$username --no-password --dbname=$dbname --index=$index_name
     done
 done
 

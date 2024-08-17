@@ -11,7 +11,7 @@ USAGE_STRING="Использовать: $0 hosthame port username clustername ba
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
-    exit 1
+    exit
 fi
 
 ###############
@@ -32,7 +32,7 @@ echo -n "Проверка на выполнение ... "
 if [ -d "$backupdir_inprogress" ]; then
     echo "Бэкап уже выполняется!"
     echo "Если это остатки прерванного - удалите каталог $backupdir_inprogress вручную"
-    exit 100
+    exit
 else
     echo "Не выполняется!"
 fi
@@ -49,7 +49,7 @@ else
     else
         echo "Бэкап уже выполнен сегодня!"
         echo "Если надо заново, запустите с параметром backupdir_rewrite == YES"
-        exit 100
+        exit
     fi
 fi
 

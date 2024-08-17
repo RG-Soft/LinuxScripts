@@ -10,7 +10,7 @@ USAGE_STRING="Использовать: $0 clastername walbackup_dir basebackup_
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
-    exit 1
+    exit
 fi
 
 clustername=$1 # можно использовать номер порта, если кластен не именной, или именя базы кластера.
@@ -45,7 +45,7 @@ if cd "$basebackup_dir" ; then
 				else
 					echo "ОШИБКА!!!"
 					echo "Ошибка при очистке каталога в облаке файлов! Необходима проверка"
-					exit 100
+					exit
 				fi
 			fi
 
@@ -56,7 +56,7 @@ if cd "$basebackup_dir" ; then
 				if ! rm -R "$basebackup_current_dir" ; then
 					echo "ОШИБКА!!!"
 					echo "Ошибка при очистке каталога \"${basebackup_current_dir}\"! Необходима проверка"
-					exit 100
+					exit
 				fi
 				
 				echo "Выполнено!"
@@ -65,7 +65,7 @@ if cd "$basebackup_dir" ; then
 			else
 				echo "ОШИБКА!!!"
 				echo "Ошибка при перемещении файлов! Необходима проверка"
-				exit 100
+				exit
 			fi
 		done
 		# Проверяем только первый по списку каталог
@@ -75,7 +75,7 @@ else
 	echo "Ошибка!!!" 
 	echo "Не удалось перейти в каталог basebackup: ${basebackup_dir}. Прервано копирование в облако!"
 	echo
-	exit 100 
+	exit 
 fi
 
 basebackup_current_dir=""
@@ -113,7 +113,7 @@ for file in ${filelist[@]}; do
 					echo "Определен каталог basebackup $basebackup_current_dir"
 				else
 					echo "ОШИБКА определения каталога. Каталог basebackup ${basebackup_current_dir} не найден!"
-					exit 100
+					exit
 				fi
 			fi
 		else
@@ -131,7 +131,7 @@ if [ -z "$finish_name" ]; then
 	echo
 	echo "ОШИБКА! Не предусмотрена архивация единственного basebackup + wal архивов."
 	echo "ОШИБКА! Необходимо сделать basebackup и после завершения повторить текущую операцию."
-	exit 100
+	exit
 fi
 
 let "for_index=0"
@@ -148,7 +148,7 @@ for current_file in ${walbackup_dir}* ; do
 			cat ${current_file}
 		else
 			echo "Контроль НЕ пройден на метку basebackup для файла $finish_name"
-			exit 100
+			exit
 		fi
 		break
     fi
@@ -185,7 +185,7 @@ if [ -f "$basebackup_cloud_dir"/"$dest_dirname" ] ; then
 	else
 		echo "ОШИБКА!!!"
 		echo "Ошибка при очистке каталога в облаке файлов! Необходима проверка"
-		exit 100
+		exit
 	fi
 fi
 
@@ -196,11 +196,11 @@ then
 	if ! rm -R "$basebackup_current_dir" ; then
 		echo "ОШИБКА!!!"
 		echo "Ошибка при очистке каталога \"${basebackup_current_dir}\"! Необходима проверка"
-		exit 100
+		exit
 	fi
 	echo "Выполнено!"
 else
 	echo "ОШИБКА!!!"
 	echo "Ошибка при перемещении файлов! Необходима проверка"
-	exit 100
+	exit
 fi

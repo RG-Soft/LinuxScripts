@@ -10,7 +10,7 @@ USAGE_STRING="Использовать: $0 hosthame port username
 
 if [ "$1" == "" ]; then
     echo "$USAGE_STRING"
-    exit 1
+    exit
 fi
 
 srvname=$1

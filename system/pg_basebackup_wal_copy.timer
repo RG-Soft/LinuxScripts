@@ -10,7 +10,7 @@ Requires=pg_basebackup_wal_copy.service
 
 [Timer]
 Unit=pg_basebackup_wal_copy.service
-OnCalendar=Sun *-*-* 03:30:00
+OnCalendar=Sun *-*-* 04:00:00
 
 [Install]
 WantedBy=timers.target

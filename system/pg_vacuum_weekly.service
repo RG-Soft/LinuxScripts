@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Vacuum weekly maintenance schedule service for databases
-Wants=pg_vacuum_weekly.timer
 
 [Service]
 Type=oneshot

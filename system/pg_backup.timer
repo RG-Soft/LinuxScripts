@@ -4,7 +4,6 @@
 
 [Unit]
 Description=PG. Backup DB daily maintenance schedule service for databases
-Requires=pg_backup.service
 
 [Timer]
 Unit=pg_backup.service

@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Backup daily maintenance schedule service for databases
-Wants=pg_backup.timer
 
 [Service]
 Type=oneshot

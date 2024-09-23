@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Basebackup weekly maintenance schedule service for databases
-Requires=pg_basebackup.service
 
 [Timer]
 Unit=pg_basebackup.service

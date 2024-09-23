@@ -5,7 +5,6 @@
 #
 [Unit]
 Description=PG. Copy backup DB daily maintenance schedule service for databases
-Wants=_pg_backup_copy.timer
 
 [Service]
 Type=oneshot

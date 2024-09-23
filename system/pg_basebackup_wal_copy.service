@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Basebackup and wal copy to cloud weekly maintenance schedule service for databases
-Wants=pg_basebackup_wal_copy.timer
 
 [Service]
 Type=oneshot

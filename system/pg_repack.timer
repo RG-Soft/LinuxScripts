@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Repack maintenance schedule service for databases
-Requires=pg_repack.service
 
 [Timer]
 Unit=pg_repack.service

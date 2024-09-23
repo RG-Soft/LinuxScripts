@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Vacuum weekly maintenance schedule service for databases
-Requires=pg_vacuum_weekly.service
 
 [Timer]
 Unit=pg_vacuum_weekly.service

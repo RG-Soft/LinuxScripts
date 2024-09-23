@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Repack maintenance schedule service for databases
-Wants=pg_repack.timer
 
 [Service]
 Type=oneshot

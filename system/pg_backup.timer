@@ -9,7 +9,7 @@ Description=PG. Backup daily maintenance schedule service for databases
 
 [Timer]
 Unit=pg_backup.service
-OnCalendar=Mon..Fri *-*-* 03:15:00
+OnCalendar=Mon..Fri *-*-* 05:15:00
 
 [Install]
 WantedBy=timers.target

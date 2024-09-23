@@ -6,7 +6,6 @@
 
 [Unit]
 Description=PG. Basebackup weekly maintenance schedule service for databases
-Wants=pg_basebackup.timer
 
 [Service]
 Type=oneshot

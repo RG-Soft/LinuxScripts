@@ -11,4 +11,4 @@ Description=PG. Backup daily maintenance schedule service for databases
 Type=oneshot
 User=postgres
 #ExecStart=/var/lib/postgresql/pg_scripts/backup_dbsaler1.sh
-ExecStart=/var/lib/postgresql/pg_scripts/backup_dbase_zakupki.sh
+ExecStart=/var/lib/postgresql/pg_scripts/backup_dbase_ciet_cas.sh

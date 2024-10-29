@@ -1,0 +1,15 @@
+#
+# RG-Soft
+#
+# Тайм юнит для регламента vacuum ежедневного обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Vacuum daily maintenance schedule service for databases
+
+[Timer]
+Unit=pg_vacuum_daily.service
+OnCalendar=Mon..Fri *-*-* 02:00:00
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,14 @@
+#
+# RG-Soft
+#
+# Сервис юнит очистки и перепаковки для регламента обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Repack maintenance schedule service for databases
+
+[Service]
+Type=oneshot
+User=postgres
+#ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_dbsaler1.sh
+ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_zakupki.sh

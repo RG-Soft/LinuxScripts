@@ -11,7 +11,7 @@ dbname=slbERM
 srvname=localhost
 port=5433
 username=postgres
-jobs=2
+jobs=4
 # ///////////////////////////////////////////////////////////////
 
 $(dirname ${BASH_SOURCE[0]})/main/vacuum_dbase.sh $srvname $port $dbname $username $jobs

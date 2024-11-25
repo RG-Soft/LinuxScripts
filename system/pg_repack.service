@@ -11,4 +11,4 @@ Description=PG. Repack maintenance schedule service for databases
 Type=oneshot
 User=postgres
 #ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_dbsaler1.sh
-ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_zakupki.sh
+ExecStart=/var/lib/postgresql/pg_scripts/repack_cluster_ciet_cas.sh

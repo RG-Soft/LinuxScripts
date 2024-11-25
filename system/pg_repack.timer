@@ -9,7 +9,7 @@ Description=PG. Repack maintenance schedule service for databases
 
 [Timer]
 Unit=pg_repack.service
-OnCalendar=Mon..Sat *-*-* 00:01:00
+OnCalendar=Mon..Sat *-*-* 01:00:00
 
 [Install]
 WantedBy=timers.target

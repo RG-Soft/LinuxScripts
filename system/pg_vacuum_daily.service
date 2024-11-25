@@ -11,4 +11,4 @@ Description=PG. Vacuum daily maintenance schedule service for databases
 Type=oneshot
 User=postgres
 #ExecStart=/var/lib/postgresql/pg_scripts/vacuumdb_daily_dbsaler1.sh
-ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_zakupki_daily.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_ciet_cas_daily.sh

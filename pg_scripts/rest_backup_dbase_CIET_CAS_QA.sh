@@ -20,6 +20,6 @@ dbname=${dbname_source}_${developer}
 srvname=localhost
 port=5433
 username=postgres
-jobs=3 # количество должно быть CPU/2 - максимум на слабых машинах.
+jobs=4 # количество должно быть CPU/2 - максимум на слабых машинах.
 
 $(dirname ${BASH_SOURCE[0]})/main/rest_backup_dbase.sh $srvname $port $dbname $username $jobs $backup_dir

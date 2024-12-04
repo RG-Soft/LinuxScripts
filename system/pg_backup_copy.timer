@@ -5,7 +5,7 @@
 #
 [Unit]
 Description=PG. Copy backup DB daily maintenance schedule service for databases
-Requires=pg_backup_copy@pawcmfr.service
+Requires=pg_backup_copy.service
 
 [Timer]
 Unit=pg_backup_copy.service

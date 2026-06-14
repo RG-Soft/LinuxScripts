@@ -10,8 +10,7 @@
 clustername=Zakupki # можно использовать номер порта, если кластен не именной, или именя базы кластера.
 walbackup_dir=/pgbackup/$clustername/walbackup/
 basebackup_dir=/pgbackup/$clustername/basebackup/
-# Для Закупок отдельный каталог, т.к. туда же капируется ежедневный для копий
-basebackup_cloud_dir=/mnt/ru0222nas02_YANDEX/ru0222app48/SQLBackup/$clustername/basebackup/
+basebackup_cloud_dir=/mnt/ru0149bck01_SQLBackups/ru0222app48/SQLBackup/$clustername
 # ///////////////////////////////////////////////////////////////
 
 $(dirname ${BASH_SOURCE[0]})/main/basebackup_and_wal_copy.sh $clustername $walbackup_dir $basebackup_dir $basebackup_cloud_dir

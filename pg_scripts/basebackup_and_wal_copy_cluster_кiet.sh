@@ -7,10 +7,10 @@
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов
-clustername=CIET_CAS # можно использовать номер порта, если кластен не именной, или именя базы кластера.
+clustername=RIET # можно использовать номер порта, если кластен не именной, или именя базы кластера.
 walbackup_dir=/pgbackup/$clustername/walbackup/
 basebackup_dir=/pgbackup/$clustername/basebackup/
-basebackup_cloud_dir=/mnt/ru0222nas02_YANDEX/ru0222app61/SQLBackup/$clustername/
+basebackup_cloud_dir=/mnt/ru0149bck01_SQLBackups/ru0222app100/SQLBackup/$clustername/
 # ///////////////////////////////////////////////////////////////
 
 $(dirname ${BASH_SOURCE[0]})/main/basebackup_and_wal_copy.sh $clustername $walbackup_dir $basebackup_dir $basebackup_cloud_dir

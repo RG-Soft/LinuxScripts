@@ -7,9 +7,9 @@
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов
-dbname=CIET_CAS_QA
-srvname=129.87.65.211
-port=5433
+dbname=RIET
+srvname=RU0149app100
+port=5432
 username=postgres
 jobs=3
 backupdir_root=/pgbackup

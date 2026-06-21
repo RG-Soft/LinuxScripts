@@ -1,0 +1,13 @@
+#
+# RG-Soft
+#
+# Сервис юнит для регламента vacuum еженедельного обслуживания баз кластера PostgreSQL
+#
+
+[Unit]
+Description=PG. Vacuum weekly maintenance schedule service for databases
+
+[Service]
+Type=oneshot
+User=postgres
+ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_riet_weekly.sh

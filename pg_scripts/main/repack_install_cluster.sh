@@ -18,7 +18,8 @@ port=$2
 username=$3
 
 # Получаем список баз данных
-dblist=`/opt/pgpro/std-15/bin/psql --dbname=postgres --host=$srvname --port=$port --username=$username --command="copy (select datname from pg_stat_database) to stdout"`
+# dblist=`/opt/pgpro/std-15/bin/psql --dbname=postgres --host=$srvname --port=$port --username=$username --command="copy (select datname from pg_stat_database) to stdout"`
+dblist=`psql --dbname=postgres --host=$srvname --port=$port --username=$username --command="copy (select datname from pg_stat_database) to stdout"`
 
 for dbname in $dblist ; do
 
@@ -32,7 +33,9 @@ for dbname in $dblist ; do
     # Удаление и Установка pg_repack
     echo 'Обрабатывается база: '$dbname
 
-    /opt/pgpro/std-15/bin/psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="DROP EXTENSION IF EXISTS pg_repack;"
-    /opt/pgpro/std-15/bin/psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="CREATE EXTENSION pg_repack;"
+    #/opt/pgpro/std-15/bin/psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="DROP EXTENSION IF EXISTS pg_repack;"
+    #/opt/pgpro/std-15/bin/psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="CREATE EXTENSION pg_repack;"
+    psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="DROP EXTENSION IF EXISTS pg_repack;"
+    psql --dbname=$dbname --host=$srvname --port=$port --username=$username --echo-queries --echo-all --command="CREATE EXTENSION pg_repack;"
 
 done

@@ -7,15 +7,14 @@
 
 # ///////////////////////////////////////////////////////////////
 # Пользовательские параметры адаптируеются под настройки серверов
-dbname=DBName
-srvname=SRVNAME
-port=5433
+dbname=upp4
+srvname=localhost
+port=5432
 username=postgres
-jobs=4
-backupdir_root=/pgbackup                    # Локальный путь
-#backupdir_root=/mnt/pgbackup/ru0222app48   # Сетевое хранилище
-backup_suffix=_now                          # История бэкапов не ведется, бэкап используется для перезаливки баз разработчиков
-#backup_suffix=$(date +'%Y%m%d_%H%M%S')     # История бэкапов ведется, бэкап сохраняется в каталог с меткой времени
+jobs=3
+backupdir_root=/pgbackup
+backup_suffix=_now # История бэкапов не ведется, бэкап используется для перезаливки баз разработчиков
+#backup_suffix=$(date +'%Y%m%d_%H%M%S') # История бэкапов ведется, бэкап сохраняется в каталог с меткой времени
 # ///////////////////////////////////////////////////////////////
 
 $(dirname ${BASH_SOURCE[0]})/main/backup_dbase.sh $srvname $port $dbname $username $jobs $backupdir_root $backup_suffix

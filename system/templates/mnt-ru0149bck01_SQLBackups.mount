@@ -1,0 +1,18 @@
+# Сервис юнит для регламента обслуживания баз кластера PG
+# RG-Soft
+#
+
+[Unit]
+Description=Storage for SQL Backup ru0222app61
+Requires=network-online.target
+After=network-online.target
+
+[Mount]
+What=//ru0149bck01.slb.ru/Backup1C
+Where=/mnt/ru0149bck01_SQLBackups
+
+Type=cifs
+Options=credentials=/etc/win-credentials,rw,uid=1511446214,gid=1511400513,nofail,_netdev,iocharset=utf8
+
+[Install]
+WantedBy=multi-user.target

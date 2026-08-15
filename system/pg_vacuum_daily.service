@@ -12,5 +12,6 @@ Wants=pg_vacuum_daily.timer
 Type=oneshot
 User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_cluster_5432_daily.sh
+ExecStart=/var/lib/postgresql/pg_scripts/vacuum_cluster_5433_daily.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_tmk_upp_daily.sh
 ExecStart=/var/lib/postgresql/pg_scripts/vacuum_dbase_upp4_daily.sh

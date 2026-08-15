@@ -11,3 +11,4 @@ Wants=pg_basebackup_wal_copy.timer
 [Service]
 Type=oneshot
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_claster_5432.sh
+ExecStart=/var/lib/postgresql/pg_scripts/basebackup_and_wal_copy_claster_5433.sh

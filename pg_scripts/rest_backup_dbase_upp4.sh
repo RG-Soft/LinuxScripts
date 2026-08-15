@@ -17,7 +17,7 @@ backup_dir=/mnt/ru0149app149/${dbname_source}/${dbname_source}_now	# Бэкап 
 
 dbname=${dbname_source}_${developer}
 srvname=localhost
-port=5432
+port=5433
 username=postgres
 jobs=3 # количество должно быть CPU/2 - максимум на слабых машинах.
 

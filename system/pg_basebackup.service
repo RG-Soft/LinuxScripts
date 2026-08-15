@@ -12,3 +12,4 @@ Wants=pg_basebackup.timer
 Type=oneshot
 User=postgres
 ExecStart=/var/lib/postgresql/pg_scripts/basebackup_cluster_5432.sh
+ExecStart=/var/lib/postgresql/pg_scripts/basebackup_cluster_5433.sh
